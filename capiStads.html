@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barcelona vs Dortmund - Estadísticas</title>
+    <title>BarcelonavsDortmund - Estadísticas | CapySoccer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/CapiBasics.css">
     <link rel="stylesheet" href="css/capiStadsStyle.css">
@@ -52,7 +52,7 @@
 
                 <li class="menu__item_user">
                     <a href="user-config.html" class="menu__link"><img src="img/user_icon_def.png"
-                            style="width: 35px; height: 35px; border-radius: 100%;"> Capisote</a>
+                            style="width: 35px; height: 35px; border-radius: 100%;"></a>
                 </li>
 
             </ul>
@@ -68,26 +68,25 @@
             <div class="encuentro">
                 <div class="equipos">
                     <div class="equipo">
+                        <div class="nombre-equipo">Barcelona</div>
                         <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png"
                             alt="Escudo Barcelona" class="escudo">
-                        <div class="nombre-equipo">Barcelona</div>
                     </div>
 
                     <div class="marcador-container">
                         <div class="vs-label">VS</div>
                         <div class="marcador">3-1</div>
+                        <div class="goles-label">
+                            <i class="fas fa-futbol"></i>
+                            <span>Goles</span>
+                        </div>
                     </div>
 
                     <div class="equipo">
+                        <div class="nombre-equipo">Dortmund</div>
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png"
                             alt="Escudo Dortmund" class="escudo">
-                        <div class="nombre-equipo">Dortmund</div>
                     </div>
-                </div>
-
-                <div class="goles-label">
-                    <i class="fas fa-futbol"></i>
-                    <span>Goles</span>
                 </div>
 
                 <div class="goles-container">
@@ -115,13 +114,14 @@
                 </div>
 
                 <div class="botones-container">
-                    <button class="boton">Alineación</button>
-                    <a href="capiPartidos.html"><button class="boton">Historial</button></a>
+                    <a href="capiAlineación.html" class="boton-alineacion"><button class="boton">Alineación</button></a>
+                    <a href="#" class="boton-historial" id="partidos-historial"><button
+                            class="boton">Historial</button></a>
                 </div>
             </div>
         </div>
 
-        <div class="estadistica-partido">
+        <div class="estadistica-partido" id="estadisticaPartido">
             <h2>Estadísticas del Partido</h2>
             <table class="stats-table">
                 <tr>
@@ -169,6 +169,7 @@
                 </div>
             </div>
         </div>
+        <div class="estadistica-historial" id="estadisticaHistorial" style="display: none;"></div>
     </div>
 
     <div class="anuncio-overlay" id="anuncioOverlay">
@@ -199,25 +200,66 @@
         <p>&copy; 2025 CapySoccer. Todos los derechos reservados.</p>
     </footer>
     <script src="js/menu-desplegable.js"></script>
+    <!--Modal(Anuncio)-->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const anuncioOverlay = document.getElementById('anuncioOverlay');
             const cerrarAnuncio = document.getElementById('cerrarAnuncio');
 
-            // Función para ocultar el anuncio
             function ocultarAnuncio() {
                 anuncioOverlay.style.display = 'none';
             }
 
-            // Cerrar el anuncio al hacer click en la X
             cerrarAnuncio.addEventListener('click', ocultarAnuncio);
 
-            // También se puede cerrar haciendo click fuera del anuncio
             anuncioOverlay.addEventListener('click', function (e) {
                 if (e.target === anuncioOverlay) {
                     ocultarAnuncio();
                 }
             });
+        });
+    </script>
+    <!--Cargar usuario-->
+    <script>
+        window.onload = function () {
+            const usuarioGuardado = sessionStorage.getItem('usuario');
+            const bienvenidoElemento = document.getElementById('user-view');
+            if (usuarioGuardado) {
+                const usuario = JSON.parse(usuarioGuardado);
+                bienvenidoElemento.textContent = `${usuario.nombre}`;
+            } else {
+                bienvenidoElemento.textContent = 'Invitado';
+            }
+        };
+    </script>
+    <!--Cargar más contenido-->
+    <script>
+        document.getElementById('partidos-historial').addEventListener('click', function (event) {
+            event.preventDefault();
+
+            const estadisticaPartido = document.getElementById('estadisticaPartido');
+            const estadisticaHistorial = document.getElementById('estadisticaHistorial');
+            const boton = this.querySelector('button');
+
+            if (estadisticaPartido.style.display === 'block') {
+                estadisticaPartido.style.display = 'none';
+                estadisticaHistorial.innerHTML = `
+                <h2>Información adicional</h2>
+                <p class="extra-data">Fecha: 04/05/25 - 3:00pm | Competición: Champions League | Jornada: Cuartos de Final | Estadio: Santiago Bernabéu</p>
+                <div class="estadio-1">
+                    <img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/12/1b/53/db.jpg" class="bernabeu">
+                </div>
+                <div class="botones-container">
+                    <a href="capiPartidos.html" class="boton-partidos"><button class="boton">Ver más partidos</button></a>
+                </div>
+                `;
+                estadisticaHistorial.style.display = 'block';
+                boton.textContent = 'Volver';
+            } else {
+                estadisticaHistorial.style.display = 'none';
+                estadisticaPartido.style.display = 'block';
+                boton.textContent = 'Historial';
+            }
         });
     </script>
 </body>
