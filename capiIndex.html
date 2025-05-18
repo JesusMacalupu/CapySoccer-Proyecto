@@ -4,26 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partidos | CapySoccer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="css/CapiBasics.css">
-    <link rel="stylesheet" href="css/capiMatches.css">
+    <title>CapySoccer</title>
+    <link rel="stylesheet" href="css/CapiStyles.css">
 </head>
 
-<body style="background: url('img/Fondito.jpg')no-repeat center center; background-size: cover;">
+<body>
     <nav class="menu">
         <section class="menu__container">
-            <h1 class="menu__logo"><a href="capiIndex.html" class="menu__link_logo"><img src="img/logoCapySoccer.jfif"
+            <h1 class="menu__logo"><a href="user-config.html" class="menu__link_logo"><img src="img/logoCapySoccer.jfif"
                         style="width: 62.5px; height: 62.5px; border-radius: 100%;">CapiSoccer</a></h1>
-
-            <div class="back__arrow">
-                <a href="capiIndex.html" class="back_arrow__link"><img src="img/svgs/back_arrow.svg"
-                        class="back_arrow__img"></a>
-            </div>
-
-            <div class="page__name">
-                <div class="page__capt">Estadísticas</div>
-            </div>
 
             <ul class="menu__links">
                 <li class="menu__item">
@@ -51,8 +40,8 @@
                 </li>
 
                 <li class="menu__item_user">
-                    <a href="user-config.html" class="menu__link"><img src="img/user_icon_def.png"
-                            style="width: 35px; height: 35px; border-radius: 100%;"> Capisote</a>
+                    <a href="user-config.html" id="user-view" class="menu__link"><img src="img/user_icon_def.png"
+                            style="width: 30px; height: 30px; border-radius: 100%;"></a>
                 </li>
 
             </ul>
@@ -62,94 +51,24 @@
             </div>
         </section>
     </nav>
-    <div class="contenedor" id="contenidoPrincipal">
-        <h2>Búsqueda de partidos</h2>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar partidos..." />
-            <button id="searchButton">Buscar</button>
-        </div>
-        <div class="versus">
-            <div class="encuentro">
-                <a href="capiStads.html" class="main__encounter">
-                    <div class="equipos">
-                        <div class="equipo">
-                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png"
-                                alt="Escudo Barcelona" class="escudo">
-                            <div class="nombre-equipo">Barcelona</div>
-                        </div>
-
-                        <div class="marcador-container">
-                            <div class="goles-label">
-                                <i class="fas fa-futbol"></i>
-                                <span>Goles</span>
-                            </div>
-                            <div class="marcador">3 - 1</div>
-                        </div>
-
-
-                        <div class="equipo">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png"
-                                alt="Escudo Dortmund" class="escudo">
-                            <div class="nombre-equipo">Dortmund</div>
-                        </div>
-                    </div>
-                </a>
+    <main class="main-content">
+        <div id="bienvenido"></div>
+        <br>
+        <h2>Ligas Internacionales</h2>
+        <br>
+        <section class="league-grid">
+            <div class="league-item"><a href="capiPartidos.html"><img src="img/champions.png"
+                        alt="Champions League"></a></div>
+            <div class="league-item"><a href="capiPartidos.html"><img src="img/europa.png" alt="Europa League"></a>
             </div>
-            <div class="encuentro">
-                <a href="capiStads.html" class="main__encounter">
-                    <div class="equipos">
-                        <div class="equipo">
-                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png"
-                                alt="Escudo Real Madrid" class="escudo">
-                            <div class="nombre-equipo">Real Madrid</div>
-                        </div>
-
-                        <div class="marcador-container">
-                            <div class="goles-label">
-                                <i class="fas fa-futbol"></i>
-                                <span>Goles</span>
-                            </div>
-                            <div class="marcador">2 - 2</div>
-                        </div>
-
-
-                        <div class="equipo">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/FC_Internazionale_Milano_2021.svg/2048px-FC_Internazionale_Milano_2021.svg.png"
-                                alt="Escudo Inter" class="escudo">
-                            <div class="nombre-equipo">Inter</div>
-                        </div>
-                    </div>
-                </a>
+            <div class="league-item"><a href="capiPartidos.html"><img src="img/libertadores.png" alt="Libertadores"></a>
             </div>
-            <div class="encuentro">
-                <a href="capiStads.html" class="main__encounter">
-                    <div class="equipos">
-                        <div class="equipo">
-                            <img src="https://as01.epimg.net/img/comunes/fotos/fichas/equipos/large/49.png"
-                                alt="Escudo PSG" class="escudo">
-                            <div class="nombre-equipo">PSG</div>
-                        </div>
-
-                        <div class="marcador-container">
-                            <div class="goles-label">
-                                <i class="fas fa-futbol"></i>
-                                <span>Goles</span>
-                            </div>
-                            <div class="marcador">4 - 0</div>
-                        </div>
-
-
-                        <div class="equipo">
-                            <img src="https://as01.epimg.net/img/comunes/fotos/fichas/equipos/large/65.png"
-                                alt="Escudo Liverpool" class="escudo">
-                            <div class="nombre-equipo">Liverpool</div>
-                        </div>
-                    </div>
-                </a>
+            <div class="league-item"><a href="capiPartidos.html"><img src="img/laliga.jpg" alt="La Liga"></a></div>
+            <div class="league-item"><a href="capiPartidos.html"><img src="img/serie-a.jpg" alt="Serie A"></a></div>
+            <div class="league-item"><a href="capiPartidos.html"><img src="img/premier.png" alt="Premier League"></a>
             </div>
-        </div>
-    </div>
-
+        </section>
+    </main>
     <div class="anuncio-overlay" id="anuncioOverlay">
         <div class="anuncio-container">
             <div class="anuncio" id="anuncio">
@@ -177,7 +96,6 @@
     <footer class="footer">
         <p>&copy; 2025 CapySoccer. Todos los derechos reservados.</p>
     </footer>
-    <script src="js/menu-desplegable.js"></script>
     <!--Modal(Anuncio)-->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -197,24 +115,6 @@
             });
         });
     </script>
-    <!--Cuadro de búsqueda-->
-    <script>
-        document.getElementById('searchButton').addEventListener('click', function () {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const encuentros = document.querySelectorAll(
-                '.encuentro');
-
-            encuentros.forEach(encuentro => {
-                const equipos = encuentro.textContent
-                    .toLowerCase();
-                if (equipos.includes(searchTerm)) {
-                    encuentro.style.display = '';
-                } else {
-                    encuentro.style.display = 'none';
-                }
-            });
-        });
-    </script>
     <!--Cargar usuario-->
     <script>
         window.onload = function () {
@@ -228,6 +128,7 @@
             }
         };
     </script>
+    <script src="js/menu-desplegable.js"></script>
 </body>
 
 </html>
