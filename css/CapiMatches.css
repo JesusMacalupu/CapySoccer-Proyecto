@@ -1,0 +1,165 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .contenedor {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            border-radius: 15px;
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 4% auto;
+            flex-wrap: wrap;
+            background: #FFF;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        #searchInput {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 300px;
+            margin-right: 10px;
+        }
+
+        #searchButton {
+            padding: 10px 15px;
+            background-color: #146c1d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #searchButton:hover {
+            background-color: #146919;
+            box-shadow: 0.25px 0.25px 3.25px 3.25px #0f8b1c46;
+            transition: 0.2s;
+        }
+
+        .versus {
+            width: 100%;
+            height: 225px;
+            border-radius: 12.5px;
+            background-color: white;
+            display: flex;
+        }
+
+
+        @media (max-width: 800px) {
+            .contenedor {
+                border-radius: 0px;
+                padding: 10px;
+            }
+
+            .versus {
+                width: 415px;
+                height: 100%;
+                border-radius: 0%;
+                margin: -20px;
+                flex-direction: column;
+            }
+
+            .equipos {
+                display: flex;
+                width: 100%;
+            }
+        }
+
+        h2 {
+            margin: 15px auto;
+            color: #2c3e50;
+            text-align: center;
+            font-size: 1.5rem;
+            padding: 25px 25px 10px 25px;
+        }
+
+        .main__encounter {
+            text-decoration: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .encuentro {
+            border: 1px solid black;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .equipos {
+            display: flex;
+            padding: 7.5%;
+            text-align: center;
+            align-items: center;
+            margin: 10px auto;
+        }
+
+        .equipo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 120px;
+        }
+
+        .equipo img {
+            width: 70px;
+            height: 70px;
+        }
+
+        .escudo {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .nombre-equipo {
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .marcador-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .marcador {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            padding: 0 15px;
+        }
+
+        .goles-label {
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .goles-label i {
+            margin-right: 6px;
+            color: #000000;
+        }
