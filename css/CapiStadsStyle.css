@@ -11,10 +11,9 @@
         .contenedor {
             display: flex;
             justify-content: center;
-            gap: 30px;
             width: 100%;
             max-width: 1000px;
-            margin: 3% auto;
+            margin: 5% auto;
             flex-wrap: wrap;
         }
 
@@ -25,7 +24,7 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            margin: 25px auto;
+            margin: 0 auto;
         }
 
         .versus {
@@ -43,20 +42,28 @@
 
         .bernabeu {
             width: 100%;
+            border-radius: 12.5px;
+            box-shadow: 0.125px 0.125px 3px 3px #000000;
         }
 
-        @media (max-width: 800px) {
+        @media (max-width: 400px) {
             .contenedor {
-                margin: 5% auto;
+                margin: 0 auto;
             }
 
             .versus,
             .estadistica-partido, .estadistica-historial {
-                width: 415px;
+                width: 100%;
                 border-radius: 0%;
                 border-color: #000;
                 border-width: 3px;
-                margin: -25px;
+            }
+
+            .marcador-container {
+            }
+
+            .marcador {
+                font-size: 25px!important;
             }
 
         }

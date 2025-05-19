@@ -30,7 +30,7 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            width: 300px;
+            width: 75%;
             margin-right: 10px;
         }
 
@@ -58,18 +58,26 @@
         }
 
 
-        @media (max-width: 800px) {
+        @media (max-width: 400px) {
             .contenedor {
+                height: 100%;
                 border-radius: 0px;
-                padding: 10px;
+                padding: 1.25px;
             }
 
-            .versus {
-                width: 415px;
+            .versus{
+                width: 100%;
                 height: 100%;
                 border-radius: 0%;
-                margin: -20px;
                 flex-direction: column;
+            }
+
+            .goles-label {
+                font-size: 15px!important;
+            }
+
+            .marcador {
+                font-size: 20px!important;
             }
 
             .equipos {

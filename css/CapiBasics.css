@@ -3,6 +3,7 @@
     font-size: 20px;
     color: #fff;
     height: 100px;
+    width: 100%;
     box-shadow: 0 5px 10px 0 #00000066;
 }
 
@@ -10,7 +11,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 90%;
+    width: 100%;
     max-width: 1200px;
     height: 100%;
     margin: 0 auto;
@@ -106,7 +107,7 @@
     width: 36px;
 }
 
-@media (max-width:800px) {
+@media (max-width:400px) {
 
     .menu__hamburguer,
     .back__arrow {
@@ -214,8 +215,6 @@
     }
 }
 
-
-
 .menu__link--inside {
     padding: 30px 100px 30px 20px;
 }
@@ -258,7 +257,7 @@
     box-shadow: 0 0 10px 5px #00000066;
 }
 
-@media (max-width:800px) {
+@media (max-width:400px) {
 
     .menu__hamburguer,
     .back__arrow {
@@ -267,10 +266,11 @@
 
     .menu__logo {
         display: none;
+        width: 100%;
     }
 
     .page__name {
-        width: 65%;
+        width: 100%;
         display: flex;
         background-color: #fff;
         justify-content: center;
@@ -280,7 +280,7 @@
 
     .page__capt {
         display: flex;
-        font-size: 37.5px;
+        font-size: 30px;
         color: black;
         font-weight: bold;
         justify-content: center;
@@ -352,80 +352,80 @@
     }
 }
 
-        .anuncio-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
+.anuncio-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
 
-        .anuncio-container {
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-            display: block;
-            z-index: 1000;
-        }
+.anuncio-container {
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    display: block;
+    z-index: 1000;
+}
 
-        .anuncio {
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            position: relative;
-            border: 1px solid #e0e0e0af;
-            backdrop-filter: blur(5px);
-        }
+.anuncio {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #e0e0e0af;
+    backdrop-filter: blur(5px);
+}
 
-        .cerrar-anuncio {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 10;
-        }
+.cerrar-anuncio {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+}
 
-        .cerrar-anuncio:hover {
-            background-color: rgba(0, 0, 0, 0.7);
-        }
+.cerrar-anuncio:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
 
-        .anuncio-imagenes {
-            display: flex;
-            flex-wrap: wrap;
-            width: 100%;
-        }
+.anuncio-imagenes {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
 
-        .anuncio-imagen {
-            width: 50%;
-            height: 150px;
-            background-size: cover;
-            background-position: center;
-        }
+.anuncio-imagen {
+    width: 50%;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+}
 
-        .anuncio-texto {
-            padding: 15px;
-            text-align: center;
-            background-color: rgba(167, 201, 235, 0.7);
-            font-weight: bold;
-            color: #2c3e50;
-        }
+.anuncio-texto {
+    padding: 15px;
+    text-align: center;
+    background-color: rgba(167, 201, 235, 0.7);
+    font-weight: bold;
+    color: #2c3e50;
+}
 
-        .hidden {
-            display: none;
-        }
+.hidden {
+    display: none;
+}
