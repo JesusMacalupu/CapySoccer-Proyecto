@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CapySoccer</title>
+    <link rel="stylesheet" href="css/CapiBasics.css">
+    <link rel="stylesheet" href="css/CapiSubStyle.css">
+</head>
+
+<body style="background: url('img/canchaFutbol.jpg') no-repeat center center; background-size: cover;">
+    <nav class="menu">
+        <section class="menu__container">
+            <h1 class="menu__logo"><a href="user-config.html" class="menu__link_logo"><img src="img/logoCapySoccer.jfif"
+                        style="width: 62.5px; height: 62.5px; border-radius: 100%;">CapiSoccer</a></h1>
+
+            <div class="back__arrow">
+                <a href="capiSubs.html" class="back_arrow__link"><img src="img/svgs/back_arrow.svg"
+                        class="back_arrow__img"></a>
+            </div>
+
+            <div class="page__name">
+                <div class="page__capt">Subscripciones</div>
+            </div>
+
+            <ul class="menu__links">
+                <li class="menu__item">
+                    <a href="capiIndex.html" class="menu__link">Inicio</a>
+                </li>
+
+                <li class="menu__item menu__item--show">
+                    <a href="capiSubs.html" class="menu__link">Suscripciones <img src="img/svgs/arrow.svg"
+                            class="menu__arrow"></a>
+
+                    <ul class="menu__nesting">
+                        <li class="menu__inside">
+                            <a href="javascript:void(0);" class="menu__link menu__link--inside"
+                                onclick="seleccionarOpcion('Cobre', 'capiSubs2.html')">Cobre</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="javascript:void(0);" class="menu__link menu__link--inside"
+                                onclick="seleccionarOpcion('Plata', 'capiSubs2.html')">Plata</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="javascript:void(0);" class="menu__link menu__link--inside"
+                                onclick="seleccionarOpcion('Oro', 'capiSubs2.html')">Oro</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="menu__item">
+                    <a href="capiStads.html" class="menu__link">Estadísticas</a>
+                </li>
+
+                <li class="menu__item_user">
+                    <a href="capiLogin.html" id="user-view" class="menu__link"><img src="img/user_icon_def.png"
+                            style="width: 30px; height: 30px; border-radius: 100%;"></a>
+                </li>
+            </ul>
+
+            <div class="menu__hamburguer">
+                <img src="img/svgs/menu.svg" class="menu__img">
+            </div>
+        </section>
+    </nav>
+    <main class="main-content">
+        <div id="bienvenido"></div>
+        <br>
+        <h2 style="font-size: 75px;">Planes</h2>
+        <br>
+        <section class="league-grid">
+            <div class="intervalo-plan">
+                <a class="light" style="background-color: green"
+                    onclick="abrirModal(), seleccionarPlan('Semanal')"><span>Semanal</span></a>
+            </div>
+            <div class="intervalo-plan">
+                <a class="light" style="background-color: green"
+                    onclick="abrirModal(), seleccionarPlan('Mensual')"><span>Mensual</span></a>
+            </div>
+            <div class="intervalo-plan">
+                <a class="light" style="background-color: green"
+                    onclick="abrirModal(), seleccionarPlan('Anual')"><span>Anual</span></a>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal-overlay" id="modalOverlay" onclick="cerrarModal(event)">
+        <div class="modal-container">
+            <span class="close-modal" id="closemodal" onclick="cerrarModal()">×</span>
+            <div class="modal-left">
+                <button class="modal-button-yape"><img
+                        src="https://ingenieriacivilyconstruccion.com/wp-content/uploads/2024/12/Yape-v2.png"
+                        class="yape-img"
+                        style="width: 132.5px; height: 125px; transition: transform 0.3s ease;"></button>
+                <button class="modal-button-plin"><img src="https://logosenvector.com/logo/img/plin-interbank-4391.png"
+                        class="plin-img" style="width: 90px; height: 90px; transition: transform 0.3s ease;"></button>
+                <button class="modal-button-visa"><img
+                        src="https://1000marcas.net/wp-content/uploads/2019/12/VISA-Logo-2014.png" class="visa-img"
+                        style="width: 125px; height: 75px; transition: transform 0.3s ease;"></button>
+                <button class="modal-button-mastercard"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/2560px-MasterCard_Logo.svg.png"
+                        class="mcard-img"
+                        style="width: 112.5px; height: 65px; transition: transform 0.3s ease;"></button>
+            </div>
+            <div class="modal-right">
+                <div class="qr-code">
+                    <img id="qrCode" src="" class="qr-img" alt="Código QR" style="width: 200px; height: 200px;">
+                </div>
+                <div class="planes-seleccionados">
+                    <div class="stats-rank" id="opcionSeleccionada"></div>
+                    <div class="stats-plan" id="opcionSeleccionada2"></div>
+                    <div class="costo-plan"></div>
+                </div>
+                <button class="modal-button-right"><a href="capiPago.html" class="btn-tarjeta">Pagar con
+                        tarjeta</a></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para opción de pago/ cargar usuario-->
+    <script>
+        const marcoOverlay = document.getElementById('modalOverlay');
+        const cerrarModal = document.getElementById('closemodal');
+
+        function abrirModal() {
+            marcoOverlay.style.display = 'flex';
+        }
+
+        function ocultarModal() {
+            modalOverlay.style.display = 'none';
+        }
+        cerrarModal.addEventListener('click', ocultarModal);
+
+        modalOverlay.addEventListener('click', function (e) {
+            if (e.target === modalOverlay) {
+                ocultarModal();
+            }
+        });
+    </script>
+    <!--Carga data (Rangos, planes, costo total)-->
+    <script>
+        let costos = {};
+
+        fetch('costo-planes.json')
+            .then(response => response.json())
+            .then(data => {
+                costos = data;
+            })
+            .catch(error => {
+                console.error('Error al cargar los costos:', error);
+            });
+
+        function seleccionarPlan(plan) {
+            sessionStorage.setItem('planSeleccionado', plan);
+            mostrarSeleccion();
+            abrirModal();
+        }
+
+        function mostrarSeleccion() {
+            const opcion = sessionStorage.getItem('opcionSeleccionada');
+            const contenedor = document.getElementById('opcionSeleccionada');
+            contenedor.textContent = opcion ? `Rango: ${opcion}` : 'Sin rango.';
+
+            const plan = sessionStorage.getItem('planSeleccionado');
+            const contenedor2 = document.getElementById('opcionSeleccionada2');
+            contenedor2.textContent = plan ? `Plan: ${plan}` : 'Sin plan.';
+
+            const costo = calcularCosto(opcion, plan);
+            const contenedorCosto = document.querySelector('.costo-plan');
+            contenedorCosto.textContent = `Total: $${costo}`;
+        }
+
+        function calcularCosto(rango, plan) {
+            if (costos[rango] && costos[rango][plan]) {
+                return costos[rango][plan];
+            }
+            return 0;
+        }
+    </script>
+    <!--Cargar usuario-->
+    <script>
+        window.onload = function () {
+            const usuarioGuardado = sessionStorage.getItem('usuario');
+            const bienvenidoElemento = document.getElementById('user-view');
+            if (usuarioGuardado) {
+                const usuario = JSON.parse(usuarioGuardado);
+                bienvenidoElemento.textContent = `${usuario.nombre}`;
+            } else {
+                bienvenidoElemento.textContent = 'Invitado';
+            }
+        };
+    </script>
+    <!--Generar QR-->
+    <script>
+        function generarQR() {
+            const randomText = Math.random().toString(36).substring(2, 10);
+            const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${randomText}&size=200x200`;
+            document.getElementById('qrCode').src = qrCodeUrl;
+        }
+
+        window.onload = function () {
+            generarQR();
+            setInterval(generarQR, 180000);
+        };
+    </script>
+    <script src="js/menu-desplegable.js"></script>
+</body>
+
+</html>

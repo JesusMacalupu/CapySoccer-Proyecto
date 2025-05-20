@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Subscripciones | CapySoccer</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Liu+Jian+Mao+Cao&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/CapiPayStyle.css">
+    <link rel="stylesheet" href="css/CapiBasics.css">
+</head>
+
+<body style="background: url('img/canchaFutbol.jpg') no-repeat center center; background-size: cover;">
+    <nav class="menu">
+        <section class="menu__container">
+            <h1 class="menu__logo"><a href="user-config.html" class="menu__link_logo"><img src="img/logoCapySoccer.jfif"
+                        style="width: 62.5px; height: 62.5px; border-radius: 100%;">CapiSoccer</a></h1>
+
+            <div class="back__arrow">
+                <a href="capiSubs2.html" class="back_arrow__link"><img src="img/svgs/back_arrow.svg"
+                        class="back_arrow__img"></a>
+            </div>
+
+            <div class="page__name">
+                <div class="page__capt">Pago</div>
+            </div>
+
+            <ul class="menu__links">
+                <li class="menu__item">
+                    <a href="capiIndex.html" class="menu__link">Inicio</a>
+                </li>
+
+                <li class="menu__item  menu__item--show">
+                    <a href="capiSubs.html" class="menu__link">Suscrpciones <img src="img/svgs/arrow.svg"
+                            class="menu__arrow"></a>
+
+                    <ul class="menu__nesting">
+                        <li class="menu__inside">
+                            <a href="javascript:void(0);" class="menu__link menu__link--inside"
+                                onclick="seleccionarOpcion('Cobre', 'capiSubs2.html')">Cobre</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="javascript:void(0);" class="menu__link menu__link--inside"
+                                onclick="seleccionarOpcion('Plata', 'capiSubs2.html')">Plata</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="javascript:void(0);" class="menu__link menu__link--inside"
+                                onclick="seleccionarOpcion('Oro', 'capiSubs2.html')">Oro</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="menu__item">
+                    <a href="capiStads.html" class="menu__link">Estadísticas</a>
+                </li>
+
+                <li class="menu__item_user">
+                    <a href="capiLogin.html" id="user-view2" class="menu__link"><img src="img/user_icon_def.png"
+                            style="width: 30px; height: 30px; border-radius: 100%;"></a>
+                </li>
+
+            </ul>
+
+            <div class="menu__hamburguer">
+                <img src="img/svgs/menu.svg" class="menu__img">
+            </div>
+        </section>
+    </nav>
+    <div class="contenedor">
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="close-btn">&times;</span>
+                <p id="modal-message"></p>
+            </div>
+        </div>
+
+
+        <section class="tarjeta" id="tarjeta">
+            <div class="delantera">
+                <div class="logo-marca" id="logo-marca">
+                </div>
+                <img src="img/chip-tarjeta.png" class="chip" alt="">
+                <div class="datos">
+                    <div class="grupo" id="numero">
+                        <p class="label">Número Tarjeta</p>
+                        <p class="numero">#### #### #### ####</p>
+                    </div>
+                    <div class="flexbox">
+                        <div class="grupo" id="nombre">
+                            <p class="label">Nombre Tarjeta</p>
+                            <p class="nombre" id="user-view"></p>
+                        </div>
+
+                        <div class="grupo" id="expiracion">
+                            <p class="label">Expiracion</p>
+                            <p class="expiracion"><span class="mes">MM</span> / <span class="year">AA</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trasera">
+                <div class="barra-magnetica"></div>
+                <div class="datos">
+                    <div class="grupo" id="firma">
+                        <p class="label">Firma</p>
+                        <div class="firma">
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="grupo" id="ccv">
+                        <p class="label">CCV</p>
+                        <p class="ccv"></p>
+                    </div>
+                </div>
+                <p class="leyenda">Dame dinero, que no quiero trabajar. Dame dinero, es lo que yo quiero... ¡Venga el
+                    dinero a mi!.</p>
+            </div>
+        </section>
+
+        <div class="contenedor-btn">
+            <button class="btn-abrir-formulario" id="btn-abrir-formulario">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+
+        <form action="" id="formulario-tarjeta" class="formulario-tarjeta">
+            <div class="grupo">
+                <label for="inputNumero">Número Tarjeta</label>
+                <input type="text" id="inputNumero" maxlength="19" autocomplete="off">
+            </div>
+            <div class="grupo">
+                <label for="inputCorreo">Correo</label>
+                <input type="email" id="inputCorreo" maxlength="25" autocomplete="off">
+            </div>
+            <div class="flexbox">
+                <div class="grupo expira">
+                    <label for="selectMes">Expiracion</label>
+                    <div class="flexbox">
+                        <div class="grupo-select">
+                            <select name="mes" id="selectMes">
+                                <option disabled selected>Mes</option>
+                            </select>
+                            <i class="fas fa-angle-down"></i>
+                        </div>
+                        <div class="grupo-select">
+                            <select name="year" id="selectYear">
+                                <option disabled selected>Año</option>
+                            </select>
+                            <i class="fas fa-angle-down"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grupo ccv">
+                    <label for="inputCCV">CCV</label>
+                    <input type="text" id="inputCCV" maxlength="3">
+                </div>
+            </div>
+            <button type="submit" class="btn-enviar">Enviar</button>
+        </form>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2025 CapySoccer. Todos los derechos reservados.</p>
+    </footer>
+    <!--Carga data (Rangos, planes, costo total)-->
+    <script>
+        let costos = {};
+
+        fetch('costo-planes.json')
+            .then(response => response.json())
+            .then(data => {
+                costos = data;
+            })
+            .catch(error => {
+                console.error('Error al cargar los costos:', error);
+            });
+
+        function seleccionarPlan(plan) {
+            sessionStorage.setItem('planSeleccionado', plan);
+            mostrarSeleccion();
+            abrirModal();
+        }
+
+        function mostrarSeleccion() {
+            const opcion = sessionStorage.getItem('opcionSeleccionada');
+            const contenedor = document.getElementById('opcionSeleccionada');
+            contenedor.textContent = opcion ? `Rango: ${opcion}` : 'Sin rango.';
+
+            const plan = sessionStorage.getItem('planSeleccionado');
+            const contenedor2 = document.getElementById('opcionSeleccionada2');
+            contenedor2.textContent = plan ? `Plan: ${plan}` : 'Sin plan.';
+
+            const costo = calcularCosto(opcion, plan);
+            const contenedorCosto = document.querySelector('.costo-plan');
+            contenedorCosto.textContent = `Total: $${costo}`;
+        }
+
+        function calcularCosto(rango, plan) {
+            if (costos[rango] && costos[rango][plan]) {
+                return costos[rango][plan];
+            }
+            return 0;
+        }
+    </script>
+    <!--Cargar usuario/ Validar modal-->
+    <script>
+        window.onload = function () {
+            const usuarioGuardado = sessionStorage.getItem('usuario');
+            const bienvenidoElemento = document.getElementById('user-view');
+            const bienvenidoElemento2 = document.getElementById('user-view2');
+            if (usuarioGuardado) {
+                const usuario = JSON.parse(usuarioGuardado);
+                bienvenidoElemento.textContent = `${usuario.nombre}`;
+                bienvenidoElemento2.textContent = `${usuario.nombre}`;
+            } else {
+                bienvenidoElemento.textContent = 'Invitado';
+            }
+
+            const formulario = document.getElementById('formulario-tarjeta');
+            const modal = document.getElementById('modal');
+            const modalMessage = document.getElementById('modal-message');
+            const closeModalButton = document.getElementById('close-btn');
+
+            formulario.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const numeroTarjeta = document.getElementById('inputNumero').value;
+                const correo = document.getElementById('inputCorreo').value;
+                const ccv = document.getElementById('inputCCV').value;
+
+                if (ccv.length !== 3 || isNaN(ccv)) {
+                    mostrarModal("El CCV debe ser un número de 3 dígitos.");
+                    return;
+                }
+
+                if (!correo.endsWith('@gmail.com')) {
+                    mostrarModal("El correo debe terminar con '@gmail.com'.");
+                    return;
+                }
+
+                mostrarModal("La compra se ha concretado exitosamente, se ha enviado una boleta a su correo electrónico.");
+                setTimeout(() => {
+                    window.location.href =
+                        'capiIndex.html';
+                }, 2000);
+            });
+
+            closeModalButton.addEventListener('click', function () {
+                modal.style.display = 'none';
+            });
+
+            function mostrarModal(mensaje) {
+                modalMessage.textContent = mensaje;
+                modal.style.display = 'block';
+            }
+        };
+    </script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+    <script src="js/menu-desplegable.js"></script>
+    <script src="js/tarjeta.js"></script>
+</body>
+
+</html>

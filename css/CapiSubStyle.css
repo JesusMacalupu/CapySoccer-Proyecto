@@ -1,0 +1,333 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.main-content {
+    text-align: center;
+}
+
+h2 {
+    padding-top: 1%;
+    color: white;
+    text-shadow:
+        -2px -2px 0 rgba(0, 0, 0, 0.5),
+        2px -2px 0 rgba(0, 0, 0, 0.5),
+        -2px 2px 0 rgba(0, 0, 0, 0.5),
+        2px 2px 0 rgba(0, 0, 0, 0.5);
+    margin: 10px auto;
+}
+
+.league-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 25px auto;
+    padding: 5%;
+    gap: 42.5px
+}
+
+.league-item,
+.intervalo-plan {
+    width: 30%;
+    height: 132.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2.5px auto;
+    border-radius: 15px;
+    box-shadow: 20px 20px 20px 0 rgb(0, 0, 0);
+}
+
+.light {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    border-radius: 15px;
+    color: white;
+}
+
+.light span {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    background: url(https://mmteam.controldedominios.com/files/brillo/brillog.png) no-repeat;
+    background-position: -300px 0px;
+    height: 100%;
+    font-size: 3em;
+    cursor: pointer;
+}
+
+.light:hover span {
+    background-position: 300px 0px;
+    -webkit-transition-property: all;
+    -webkit-transition-duration: 1.5s;
+    transition-property: all;
+    transition-duration: 1s;
+    color: #000000;
+}
+
+@media (max-width: 768px) {
+    .league-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .league-item,
+    .intervalo-plan {
+        width: 90%;
+    }
+
+    .span {
+        width: 90%
+    }
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-container {
+    background: white;
+    width: 80%;
+    height: 75%;
+    max-width: 800px;
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.modal-left {
+    width: 40%;
+    border-right: 1px solid #ccc;
+    flex-direction: column;
+}
+
+.modal-right {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-button-yape,
+.modal-button-plin,
+.modal-button-visa,
+.modal-button-mastercard {
+    width: 100%;
+    height: 25%;
+    padding: 2.5px;
+    background: #69a8ea;
+    border-color: rgb(60, 60, 60);
+    cursor: pointer;
+}
+
+.modal-button-yape:hover {
+    transition: 0.2222s;
+    background: #7d00cb;
+}
+
+.yape-img:hover {
+    transform: scale(1.1);
+}
+
+.modal-button-plin:hover {
+    transition: 0.2222s;
+    background: #01dfe7;
+}
+
+.plin-img:hover {
+    transform: scale(1.1);
+}
+
+.modal-button-visa:hover {
+    transition: 0.2222s;
+    background: #3741fc;
+}
+
+.visa-img:hover {
+    transform: scale(1.1);
+}
+
+.modal-button-mastercard:hover {
+    transition: 0.2222s;
+    background: #ffbf00;
+}
+
+.mcard-img:hover {
+    transform: scale(1.1);
+}
+
+.modal-button-right {
+    display: flex;
+    height: 10%;
+    margin-top: 10%;
+    width: 50%;
+    padding: 10px;
+    background: #9d5400;
+    justify-content: center;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.25s ease;
+}
+
+.btn-tarjeta {
+    text-decoration: none;
+    font-size: 22.5px;
+    color: white;
+}
+
+.modal-button-right:hover {
+    background: #8a3900;
+    box-shadow: 0.25px 0.25px 4px 4px #00000060;
+    transition: 0.25s;
+    transform: scale(1.025);
+}
+
+.qr-code {
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+    padding: 5%;
+    border-bottom: #000000 3.2px solid;
+    width: 100%;
+}
+
+.planes-seleccionados {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-bottom: 4px solid #000000;
+    margin: 0 auto;
+    width: 100%;
+    height: 20%;
+}
+
+.stats-rank,
+.stats-plan,
+.costo-plan {
+    text-align: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 20px;
+    padding: 4%;
+}
+
+.close-modal {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    width: 3%;
+    height: 6%;
+    top: 2%;
+    right: 2%;
+    cursor: pointer;
+    background-color: #000000aa;
+    font-size: 3.25em;
+    font-weight: bold;
+    color: white;
+    z-index: 1000;
+    transition: transform 0.25s ease;
+}
+
+.close-modal:hover {
+    background-color: #000000;
+    transition: 0.25s;
+    color: #ad4800;
+    box-shadow: 0.1px 0.1px 2px 2px white;
+
+    transform: scale(1.25);
+}
+
+@media (max-width: 400px) {
+
+    .modal-button-yape,
+    .modal-button-plin,
+    .modal-button-visa,
+    .modal-button-mastercard {
+        width: 100%;
+        height: 25%;
+        padding: 2.5px;
+        background: #69a8ea;
+        border-color: rgb(60, 60, 60);
+        cursor: pointer;
+    }
+
+    .modal-button-right {
+        width: 80%;
+    }
+
+    .btn-tarjeta{
+        font-size: 95%;
+    }
+
+    .visa-img,
+    .mcard-img {
+        width: 80% !important;
+        height: 40% !important;
+    }
+
+    .yape-img {
+        width: 80% !important;
+        height: 60% !important;
+    }
+
+    .plin-img {
+        width: 70% !important;
+        height: 60% !important;
+    }
+
+    .close-modal {
+        font-size: 2em;
+        width: 10%;
+        height: 5%;
+        top: 3px;
+        right: 3px;
+    }
+
+    .qr-img {
+        width: 90% !important;
+        height: 100% !important;
+        padding-bottom: 25%;
+    }
+
+    .planes-seleccionados {
+        margin: 10px auto;
+    }
+
+    .stats-rank,
+    .stats-plan,
+    .costo-plan {
+        text-align: center;
+        justify-content: center;
+        height: 10%;
+        width: 100%;
+        font-size: 15px;
+        border-right: 0;
+        border-left: 0;
+        padding: 5%;
+    }
+
+    
+}

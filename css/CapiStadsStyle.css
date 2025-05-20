@@ -59,9 +59,6 @@
                 border-width: 3px;
             }
 
-            .marcador-container {
-            }
-
             .marcador {
                 font-size: 25px!important;
             }
@@ -274,3 +271,5 @@
             border-radius: 5px;
             background-color: #3498db;
         }
+
+        

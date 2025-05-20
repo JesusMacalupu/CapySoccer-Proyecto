@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CapySoccer</title>
+    <link rel="stylesheet" href="css/CapiBasics.css">
+    <link rel="stylesheet" href="css/CapiSubStyle.css">
+</head>
+
+<body style="background: url('img/canchaFutbol.jpg') no-repeat center center; background-size: cover;">
+    <nav class="menu">
+        <section class="menu__container">
+            <h1 class="menu__logo"><a href="user-config.html" class="menu__link_logo"><img src="img/logoCapySoccer.jfif"
+                        style="width: 62.5px; height: 62.5px; border-radius: 100%;">CapiSoccer</a></h1>
+
+            <div class="back__arrow">
+                <a href="capiIndex.html" class="back_arrow__link"><img src="img/svgs/back_arrow.svg"
+                        class="back_arrow__img"></a>
+            </div>
+
+            <div class="page__name">
+                <div class="page__capt">Subscripciones</div>
+            </div>
+
+            <ul class="menu__links">
+                <li class="menu__item">
+                    <a href="capiIndex.html" class="menu__link">Inicio</a>
+                </li>
+
+                <li class="menu__item  menu__item--show">
+                    <a href="capiSubs.html" class="menu__link">Suscrpciones <img src="img/svgs/arrow.svg"
+                            class="menu__arrow"></a>
+
+                    <ul class="menu__nesting">
+                        <li class="menu__inside">
+                            <a href="javascript:void(0);" class="menu__link menu__link--inside"
+                                onclick="seleccionarOpcion('Cobre', 'capiSubs2.html')">Cobre</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="javascript:void(0);" class="menu__link menu__link--inside"
+                                onclick="seleccionarOpcion('Plata', 'capiSubs2.html')">Plata</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="javascript:void(0);" class="menu__link menu__link--inside"
+                                onclick="seleccionarOpcion('Oro', 'capiSubs2.html')">Oro</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="menu__item">
+                    <a href="capiStads.html" class="menu__link">Estadísticas</a>
+                </li>
+
+                <li class="menu__item_user">
+                    <a href="capiLogin.html" id="user-view" class="menu__link"><img src="img/user_icon_def.png"
+                            style="width: 30px; height: 30px; border-radius: 100%;"></a>
+                </li>
+
+            </ul>
+
+            <div class="menu__hamburguer">
+                <img src="img/svgs/menu.svg" class="menu__img">
+            </div>
+        </section>
+    </nav>
+    <main class="main-content">
+        <div id="bienvenido"></div>
+        <br>
+        <h2 style="font-size: 75px;">Planes</h2>
+        <br>
+        <section class="league-grid">
+            <div class="league-item">
+                <a class="light" style="background-color: #B87333" href="javascript:void(0);"
+                    onclick="seleccionarOpcion('Cobre', 'capiSubs2.html')"><span>Cobre</span></a>
+            </div>
+            <div class="league-item">
+                <a class="light" style="background-color: #C0C0C0" href="javascript:void(0);"
+                    onclick="seleccionarOpcion('Plata', 'capiSubs2.html')"><span>Plata</span></a>
+            </div>
+            <div class="league-item">
+                <a class="light" style="background-color: #FFD700" href="javascript:void(0);"
+                    onclick="seleccionarOpcion('Oro', 'capiSubs2.html')"><span>Oro</span></a>
+            </div>
+        </section>
+    </main>
+    <div class="anuncio-overlay" id="anuncioOverlay">
+        <div class="anuncio-container">
+            <div class="anuncio" id="anuncio">
+                <button class="cerrar-anuncio" id="cerrarAnuncio">×</button>
+                <div class="anuncio-imagenes">
+                    <div class="anuncio-imagen"
+                        style="background-image: url('https://home.ripley.com.pe/Attachment/WOP_5/2084276561371/2084276561371_2.jpg');">
+                    </div>
+                    <div class="anuncio-imagen"
+                        style="background-image: url('https://static.vecteezy.com/system/resources/thumbnails/010/994/239/small_2x/adidas-logo-black-symbol-clothes-design-icon-abstract-football-illustration-with-white-background-free-vector.jpg');">
+                    </div>
+                    <div class="anuncio-imagen"
+                        style="background-image: url('https://rimage.ripley.com.pe/home.ripley/Attachment/WOP/1/2020319684119/full_image-2020319684119.jpg');">
+                    </div>
+                    <div class="anuncio-imagen"
+                        style="background-image: url('https://mercury.vtexassets.com/arquivos/ids/19578918-800-800?v=638697318513000000&width=800&height=800&aspect=true');">
+                    </div>
+                </div>
+                <div class="anuncio-texto">
+                    ¡Ofertas exclusivas en artículos de fútbol! Hasta 40% de descuento
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Guardar elección de sub en sesión-->
+    <script>
+        function seleccionarOpcion(opcion, url) {
+            sessionStorage.setItem('opcionSeleccionada', opcion);
+            window.location.href = url;
+        }
+    </script>
+    <!--Modal(Anuncio)-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const anuncioOverlay = document.getElementById('anuncioOverlay');
+            const cerrarAnuncio = document.getElementById('cerrarAnuncio');
+
+            function ocultarAnuncio() {
+                anuncioOverlay.style.display = 'none';
+            }
+
+            cerrarAnuncio.addEventListener('click', ocultarAnuncio);
+
+            anuncioOverlay.addEventListener('click', function (e) {
+                if (e.target === anuncioOverlay) {
+                    ocultarAnuncio();
+                }
+            });
+        });
+    </script>
+    <!--Cargar usuario-->
+    <script>
+        window.onload = function () {
+            const usuarioGuardado = sessionStorage.getItem('usuario');
+            const bienvenidoElemento = document.getElementById('user-view');
+            if (usuarioGuardado) {
+                const usuario = JSON.parse(usuarioGuardado);
+                bienvenidoElemento.textContent = `${usuario.nombre}`;
+            } else {
+                bienvenidoElemento.textContent = 'Invitado';
+            }
+        };
+    </script>
+    <script src="js/menu-desplegable.js"></script>
+</body>
+
+</html>

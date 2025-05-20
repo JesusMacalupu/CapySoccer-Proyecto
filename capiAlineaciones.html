@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alineaciones de equipos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('https://integralspor.com/uploads/blog/detail/163eb5dd695dce9161.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+
+        .contenedor {
+            display: flex;
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rectangulo {
+            width: 350px;
+            height: 650px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #alineacion {
+            background: url('https://img.freepik.com/vector-gratis/campo-futbol-verde_225004-1137.jpg?semt=ais_hybrid&w=740') center/cover no-repeat;
+            position: relative;
+        }
+
+        .cuadrado {
+            width: 250px;
+            height: 270px;
+            border: 1px solid white;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .circulos-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .fila-circulos {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            width: 100%;
+            padding: 8px 0;
+        }
+
+        .circulo {
+            width: 25px;
+            height: 25px;
+            background-color: yellow;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .circulo:hover {
+            transform: scale(1.1);
+        }
+
+        .circulo.seleccionado {
+            background-color: red;
+            transform: scale(1.2);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+            color: white;
+        }
+
+        #cuadrado-inferior .circulos-container {
+            flex-direction: column-reverse;
+        }
+
+        /* ESTILOS RESPONSIVE PARA INFO JUGADOR */
+        #info-jugador {
+            background: linear-gradient(135deg, #2c3e50, #1a1a2e);
+            color: white;
+            justify-content: flex-start;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-header {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 20px;
+            text-align: center;
+            font-size: clamp(18px, 2vw, 24px);
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .info-header::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: #e74c3c;
+            border-radius: 3px;
+        }
+
+        .escudo-equipo {
+            width: clamp(25px, 3vw, 30px);
+            height: clamp(25px, 3vw, 30px);
+            object-fit: contain;
+        }
+
+        #jugador-info {
+            width: 100%;
+            flex-grow: 1;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .jugador-foto {
+            width: clamp(100px, 25vw, 150px);
+            height: clamp(100px, 25vw, 150px);
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: clamp(15px, 2vw, 25px);
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background-color: #34495e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: clamp(12px, 1.5vw, 14px);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .jugador-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .jugador-nombre {
+            font-size: clamp(18px, 2.5vw, 24px);
+            font-weight: 700;
+            margin-bottom: clamp(5px, 1vw, 10px);
+            color: #fff;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+            text-align: center;
+            word-break: break-word;
+        }
+
+        .jugador-dorsal {
+            font-size: clamp(14px, 1.8vw, 18px);
+            color: #e74c3c;
+            font-weight: 600;
+            margin-bottom: clamp(10px, 2vw, 20px);
+        }
+
+        .jugador-detalles {
+            width: 100%;
+            max-width: 300px;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.2);
+            padding: clamp(10px, 2vw, 20px);
+            border-radius: 8px;
+            margin-bottom: clamp(10px, 2vw, 20px);
+            border-left: 3px solid #e74c3c;
+        }
+
+        .jugador-detalles p {
+            margin-bottom: clamp(5px, 1vw, 10px);
+            display: flex;
+            justify-content: space-between;
+            font-size: clamp(12px, 1.6vw, 16px);
+            line-height: 1.4;
+        }
+
+        .jugador-detalles strong {
+            color: #e74c3c;
+            font-weight: 600;
+            min-width: 100px;
+            display: inline-block;
+        }
+
+        .jugador-estado {
+            display: inline-block;
+            padding: clamp(5px, 1vw, 8px) clamp(10px, 2vw, 20px);
+            background: rgba(39, 174, 96, 0.2);
+            color: #27ae60;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: clamp(12px, 1.5vw, 14px);
+            margin-top: clamp(5px, 1vw, 10px);
+            border: 1px solid rgba(39, 174, 96, 0.5);
+        }
+
+        .jugador-mensaje {
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+            margin-top: auto;
+            padding-bottom: clamp(10px, 2vw, 20px);
+            font-size: clamp(10px, 1.4vw, 14px);
+            text-align: center;
+            width: 100%;
+        }
+
+        .back__arrow {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .back_arrow__link {
+            border-radius: 100%;
+            display: flex;
+            height: 50px;
+            width: 50px;
+            transition: 0.25s ease;
+            background-color: white;
+        }
+
+        .back_arrow__img {
+            object-fit: cover;
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+        }
+
+        .back_arrow__link:hover {
+            box-shadow: 0.75px 0.75px 9px 9px black;
+            transform: scale(1.125);
+        }
+
+        /* MEDIA QUERIES ESPECÍFICAS */
+        @media (max-width: 1024px) {
+            .rectangulo {
+                width: 300px;
+                height: 550px;
+            }
+
+            .cuadrado {
+                width: 220px;
+                height: 240px;
+                padding: 15px;
+            }
+
+            .fila-circulos {
+                gap: 20px;
+                padding: 6px 0;
+            }
+
+            .circulo {
+                width: 22px;
+                height: 22px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .rectangulo {
+                width: 280px;
+                height: 500px;
+            }
+
+            .cuadrado {
+                width: 200px;
+                height: 220px;
+                padding: 12px;
+            }
+
+            .fila-circulos {
+                gap: 18px;
+                padding: 5px 0;
+            }
+
+            .circulo {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .back__arrow {
+                display: flex;
+            }
+
+            .contenedor {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .rectangulo {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                min-height: 500px;
+                padding: 15px;
+            }
+
+            .info-header {
+                padding: 10px 15px;
+                font-size: 16px;
+            }
+
+            .jugador-detalles p {
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .jugador-detalles strong {
+                min-width: auto;
+                margin-bottom: 2px;
+            }
+
+            .jugador-detalles {
+                width: 95%;
+                padding: 12px;
+            }
+
+            .cuadrado {
+                width: 90%;
+                height: 170px;
+                padding: 10px;
+            }
+
+            .fila-circulos {
+                gap: 15px;
+                padding: 4px 0;
+            }
+
+            .circulo {
+                width: 16px;
+                height: 16px;
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 350px) {
+            .jugador-nombre {
+                font-size: 16px;
+            }
+
+            .jugador-dorsal {
+                font-size: 14px;
+            }
+
+            .jugador-detalles p {
+                font-size: 12px;
+            }
+        }
+
+        .escudo-barca {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 50px;
+            height: auto;
+            z-index: 2;
+        }
+
+        .escudo-dortmund {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 50px;
+            height: auto;
+            z-index: 2;
+        }
+
+        .formacion-container {
+            position: absolute;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 15px;
+            padding: 5px 10px;
+            z-index: 2;
+        }
+
+        .formacion-superior {
+            top: 10px;
+            left: 10px;
+        }
+
+        .formacion-inferior {
+            bottom: 10px;
+            left: 10px;
+        }
+
+        .formacion-texto {
+            color: black;
+            font-weight: bold;
+            font-size: 1em;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+
+            .escudo-barca,
+            .escudo-dortmund {
+                width: 70px;
+            }
+
+            .formacion-texto {
+                font-size: 1.4em;
+            }
+        }
+
+        @media (min-width: 992px) {
+
+            .escudo-barca,
+            .escudo-dortmund {
+                width: 80px;
+            }
+
+            .formacion-texto {
+                font-size: 1.6em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenedor">
+        <div class="back__arrow">
+            <a href="capiStads.html" class="back_arrow__link"><img src="img/svgs/back_arrow_black.svg"
+                    class="back_arrow__img"></a>
+        </div>
+        <div id="alineacion" class="rectangulo">
+            <!-- Cuadrado Superior - Barcelona 2025 1-4-4-2 -->
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png"
+                alt="Escudo FC Barcelona" class="escudo-barca">
+            <div class="formacion-container formacion-superior">
+                <p class="formacion-texto">4-4-2</p>
+            </div>
+            <div class="cuadrado">
+                <div class="circulos-container">
+                    <div class="fila-circulos">
+                        <!-- Portero -->
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Marc-André ter Stegen', 'Portero', 1, 'Alemania', '33 años', 'https://assets.laliga.com/squad/2024/t178/p77318/2048x2048/p77318_t178_2024_1_002_000.jpg', 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png')">
+                            1</div>
+                    </div>
+                    <div class="fila-circulos">
+                        <!-- Defensas -->
+                        <div class="circulo"
+                            onclick="seleccionarJugador('João Cancelo', 'Lateral Derecho', 2, 'Portugal', '31 años', 'https://media.futbolfantasy.com/thumb/400x400/v202407022317/uploads/images/jugadores/ficha/1882.png', 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png')">
+                            2</div>
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Ronald Araújo', 'Defensa Central', 4, 'Uruguay', '26 años', 'https://www.directvsports.com/_export/1694124711541/sites/dsports/img/2023/09/07/20230907_071151059_vkmx2wpedzab18lno0lxrmoiw.jpg_1301049368.jpg', 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png')">
+                            4</div>
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Pau Cubarsí', 'Defensa Central', 33, 'España', '18 años', 'https://assets.laliga.com/squad/2024/t178/p593110/1024x1024/p593110_t178_2024_1_003_000.png', 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png')">
+                            33</div>
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Alejandro Balde', 'Lateral Izquierdo', 3, 'España', '21 años', 'https://assets.laliga.com/squad/2024/t178/p493019/1024x1024/p493019_t178_2024_1_003_000.png', 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png')">
+                            3</div>
+                    </div>
+                    <div class="fila-circulos">
+                        <!-- Mediocampistas -->
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Ilkay Gündoğan', 'Mediocentro', 22, 'Alemania', '35 años', 'https://images2.minutemediacdn.com/image/upload/c_crop,w_4000,h_2250,x_0,y_44/c_fill,w_1440,ar_16:9,f_auto,q_auto,g_auto/images/GettyImages/mmsport/90min_en_international_web/01h7q724zfnp46bxp699.jpg', 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png')">
+                            22</div>
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Frenkie de Jong', 'Mediocentro', 21, 'Países Bajos', '28 años', 'https://assets.laliga.com/squad/2023/t178/p209712/2048x2048/p209712_t178_2023_1_002_000.jpg', 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png')">
+                            21</div>
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Pedri González', 'Mediocentro Ofensivo', 8, 'España', '22 años', 'https://assets.laliga.com/squad/2024/t178/p490541/1024x1024/p490541_t178_2024_1_003_000.png', 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png')">
+                            8</div>
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Gavi', 'Interior Izquierdo', 6, 'España', '21 años', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRosYeL9hQ3bOq-0UAGgaOBz8_RKGlTbQ34PA&s', 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png')">
+                            6</div>
+                    </div>
+                    <div class="fila-circulos">
+                        <!-- Delanteros -->
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Lamine Yamal', 'Extremo Derecho', 27, 'España', '18 años', 'https://estaticos-cdn.prensaiberica.es/clip/59772b7c-1f9d-42bd-9d18-bc7eadb774b9_16-9-discover-aspect-ratio_default_0.jpg', 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png')">
+                            27</div>
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Raphinha', 'Extremo Derecho', 11, 'Brasil', '27 años', 'https://es.e-noticies.cat/filesedc/uploads/image/post/raphinha-serio_1600_1067.jpg', 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png')">
+                            11</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="flex-grow: 1; min-height: 30px;"></div>
+
+            <!-- Cuadrado Inferior - Dortmund 2024 (1-3-5-2) -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png"
+                alt="Escudo Borussia Dortmund" class="escudo-dortmund">
+            <div class="formacion-container formacion-inferior">
+                <p class="formacion-texto">3-5-2</p>
+            </div>
+            <div id="cuadrado-inferior" class="cuadrado">
+                <div class="circulos-container">
+                    <div class="fila-circulos">
+                        <!-- Portero -->
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Gregor Kobel', 'Portero', 1, 'Suiza', '26 años', 'https://upload.wikimedia.org/wikipedia/commons/3/30/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93090.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png')">
+                            1</div>
+                    </div>
+                    <div class="fila-circulos">
+                        <!-- Defensas -->
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Mats Hummels', 'Defensa Central', 15, 'Alemania', '35 años', 'https://e0.365dm.com/15/01/768x432/462080370_3256462.jpg?20150126114911', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png')">
+                            15</div>
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Nico Schlotterbeck', 'Defensa Central', 4, 'Alemania', '24 años', 'https://assets.bundesliga.com/player/dfl-obj-0028t1-dfl-clu-000007-dfl-sea-0001k8.png', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png')">
+                            4</div>
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Ramy Bensebaini', 'Lateral Izquierdo', 5, 'Argelia', '29 años', 'https://assets.bundesliga.com/player/dfl-obj-002g5s-dfl-clu-000007-dfl-sea-0001k8.png', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png')">
+                            5</div>
+                    </div>
+                    <div class="fila-circulos">
+                        <!-- Mediocampistas -->
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Emre Can', 'Pivote', 23, 'Alemania', '30 años', 'https://assets.bundesliga.com/player/dfl-obj-00012t-dfl-clu-000007-dfl-sea-0001k8.png', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png')">
+                            23</div>
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Julian Brandt', 'Mediocentro Ofensivo', 19, 'Alemania', '28 años', 'https://assets.bundesliga.com/player/dfl-obj-000280-dfl-clu-000007-dfl-sea-0001k8.png', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png')">
+                            19</div>
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Salih Özcan', 'Mediocentro', 6, 'Alemania', '26 años', 'https://assets.bundesliga.com/player/dfl-obj-00278o-dfl-clu-000007-dfl-sea-0001k8.png', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png')">
+                            6</div>
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Karim Adeyemi', 'Extremo Izquierdo', 27, 'Alemania', '22 años', 'https://image-service.onefootball.com/transform?w=280&h=210&dpr=2&image=https%3A%2F%2Fimages2.minutemediacdn.com%2Fimage%2Fupload%2Fc_crop%2Cw_4524%2Ch_2544%2Cx_0%2Cy_50%2Fc_fill%2Cw_1440%2Car_16%3A9%2Cf_auto%2Cq_auto%2Cg_auto%2Fimages%2FGettyImages%2Fmmsport%2F395%2F01je84cmfambqnjp51zp.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png')">
+                            27</div>
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Donyell Malen', 'Extremo Derecho', 21, 'Países Bajos', '25 años', 'https://assets.bundesliga.com/player/dfl-obj-j01b65-dfl-clu-000007-dfl-sea-0001k8.png', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png')">
+                            21</div>
+                    </div>
+                    <div class="fila-circulos">
+                        <!-- Delanteros -->
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Sébastien Haller', 'Delantero Centro', 9, 'Costa de Marfil', '30 años', 'https://tmssl.akamaized.net/images/foto/galerie/sebastien-haller-borussia-dortmund-2024-1712821677-133972.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png')">
+                            9</div>
+                        <div class="circulo"
+                            onclick="seleccionarJugador('Niclas Füllkrug', 'Delantero Centro', 14, 'Alemania', '31 años', 'https://images2.minutemediacdn.com/image/upload/c_fill,w_720,ar_16:9,f_auto,q_auto,g_auto/shape/cover/sport/b405683ab49cc2ceb08b0dc09e06346daccb69017860b0d50117a3a6afa7774c.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png')">
+                            14</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN DE INFORMACIÓN DE JUGADORES - COMPLETAMENTE RESPONSIVE -->
+        <div id="info-jugador" class="rectangulo">
+            <div class="info-header">
+                <img id="escudo-equipo" class="escudo-equipo"
+                    src="https://ligafutbolcity.com/img/logo/equipos/equipo_default.png" alt="Escudo">
+                FICHA TÉCNICA
+            </div>
+            <div id="jugador-info" class="jugador-info">
+                <div class="jugador-foto">
+                    <span>Selecciona un jugador</span>
+                </div>
+                <div class="jugador-nombre">-</div>
+                <div class="jugador-dorsal">#</div>
+                <div class="jugador-detalles">
+                    <p><strong>Posición:</strong> -</p>
+                    <p><strong>Nacionalidad:</strong> -</p>
+                    <p><strong>Edad:</strong> -</p>
+                </div>
+                <div class="jugador-estado">-</div>
+                <div class="jugador-mensaje">Haz clic en un jugador para ver su información detallada</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variable para almacenar el círculo seleccionado actualmente
+        let circuloSeleccionado = null;
+
+        function seleccionarJugador(nombre, posicion, dorsal, nacionalidad, edad, foto, escudo) {
+            // Si hay un círculo seleccionado previamente, lo deseleccionamos
+            if (circuloSeleccionado) {
+                circuloSeleccionado.classList.remove('seleccionado');
+            }
+
+            // Seleccionamos el nuevo círculo
+            const circulo = event.target;
+            circulo.classList.add('seleccionado');
+            circuloSeleccionado = circulo;
+
+            // Actualizamos el escudo del equipo
+            document.getElementById('escudo-equipo').src = escudo;
+
+            // Actualizamos la información del jugador
+            const jugadorInfo = document.getElementById('jugador-info');
+
+            // Crear contenido HTML para la foto (manejar errores de imagen)
+            let fotoHTML = < div class = "jugador-foto" > ;
+            if (foto) {
+                fotoHTML += < img src = "${foto}"
+                alt = "${nombre}"
+                onerror = "this.parentElement.innerHTML='<span>Foto no disponible</span>'" > ;
+            } else {
+                fotoHTML += < span > Foto no disponible < /span>;
+            }
+            fotoHTML += < /div>;
+
+            jugadorInfo.innerHTML = `
+                ${fotoHTML}
+                <div class="jugador-nombre">${nombre}</div>
+                <div class="jugador-dorsal">#${dorsal}</div>
+                <div class="jugador-detalles">
+                    <p><strong>Posición:</strong> ${posicion}</p>
+                    <p><strong>Nacionalidad:</strong> ${nacionalidad}</p>
+                    <p><strong>Edad:</strong> ${edad}</p>
+                </div>
+                <div class="jugador-estado">TITULAR</div>
+                <div class="jugador-mensaje">Última actualización: ${new Date().toLocaleDateString()}</div>
+            `;
+        }
+    </script>
+</body>
+
+</html>

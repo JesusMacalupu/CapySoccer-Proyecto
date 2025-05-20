@@ -31,17 +31,21 @@
                 </li>
 
                 <li class="menu__item  menu__item--show">
-                    <a class="menu__link">Suscrpciones <img src="img/svgs/arrow.svg" class="menu__arrow"></a>
+                    <a href="capiSubs.html" class="menu__link">Suscrpciones <img src="img/svgs/arrow.svg"
+                            class="menu__arrow"></a>
 
                     <ul class="menu__nesting">
                         <li class="menu__inside">
-                            <a href="#" class="menu__link menu__link--inside">Cobre</a>
+                            <a href="javascript:void(0);" class="menu__link menu__link--inside"
+                                onclick="seleccionarOpcion('Cobre', 'capiSubs2.html')">Cobre</a>
                         </li>
                         <li class="menu__inside">
-                            <a href="#" class="menu__link menu__link--inside">Plata</a>
+                            <a href="javascript:void(0);" class="menu__link menu__link--inside"
+                                onclick="seleccionarOpcion('Plata', 'capiSubs2.html')">Plata</a>
                         </li>
                         <li class="menu__inside">
-                            <a href="#" class="menu__link menu__link--inside">Oro</a>
+                            <a href="javascript:void(0);" class="menu__link menu__link--inside"
+                                onclick="seleccionarOpcion('Oro', 'capiSubs2.html')">Oro</a>
                         </li>
                     </ul>
                 </li>
@@ -51,7 +55,7 @@
                 </li>
 
                 <li class="menu__item_user">
-                    <a href="user-config.html" id="user-view" class="menu__link"><img src="img/user_icon_def.png"
+                    <a href="capiLogin.html" id="user-view" class="menu__link"><img src="img/user_icon_def.png"
                             style="width: 35px; height: 35px; border-radius: 100%;"></a>
                 </li>
 
@@ -114,7 +118,8 @@
                 </div>
 
                 <div class="botones-container">
-                    <a href="capiAlineacion.html" class="boton-alineacion"><button class="boton">Alineación</button></a>
+                    <a href="capiAlineaciones.html" class="boton-alineacion"><button
+                            class="boton">Alineación</button></a>
                     <a href="#" class="boton-historial" id="partidos-historial"><button
                             class="boton">Historial</button></a>
                 </div>
@@ -261,6 +266,13 @@
                 boton.textContent = 'Historial';
             }
         });
+    </script>
+    <!--Guardar elección de sub en sesión-->
+    <script>
+        function seleccionarOpcion(opcion, url) {
+            sessionStorage.setItem('opcionSeleccionada', opcion);
+            window.location.href = url;
+        }
     </script>
 </body>
 

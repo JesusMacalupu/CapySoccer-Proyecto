@@ -1,0 +1,17 @@
+{
+    "Cobre": {
+        "Semanal": 5,
+        "Mensual": 15,
+        "Anual": 150
+    },
+    "Plata": {
+        "Semanal": 10,
+        "Mensual": 30,
+        "Anual": 300
+    },
+    "Oro": {
+        "Semanal": 15,
+        "Mensual": 45,
+        "Anual": 450
+    }
+}
