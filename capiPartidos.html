@@ -72,86 +72,7 @@
             <input type="text" id="searchInput" placeholder="Buscar partidos..." />
             <button id="searchButton">Buscar</button>
         </div>
-        <div class="versus">
-            <div class="encuentro">
-                <a href="capiStads.html" class="main__encounter">
-                    <div class="equipos">
-                        <div class="equipo">
-                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png"
-                                alt="Escudo Barcelona" class="escudo">
-                            <div class="nombre-equipo">Barcelona</div>
-                        </div>
-
-                        <div class="marcador-container">
-                            <div class="goles-label">
-                                <i class="fas fa-futbol"></i>
-                                <span>Goles</span>
-                            </div>
-                            <div class="marcador">3 - 1</div>
-                        </div>
-
-
-                        <div class="equipo">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png"
-                                alt="Escudo Dortmund" class="escudo">
-                            <div class="nombre-equipo">Dortmund</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="encuentro">
-                <a href="capiStads.html" class="main__encounter">
-                    <div class="equipos">
-                        <div class="equipo">
-                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png"
-                                alt="Escudo Real Madrid" class="escudo">
-                            <div class="nombre-equipo">Real Madrid</div>
-                        </div>
-
-                        <div class="marcador-container">
-                            <div class="goles-label">
-                                <i class="fas fa-futbol"></i>
-                                <span>Goles</span>
-                            </div>
-                            <div class="marcador">2 - 2</div>
-                        </div>
-
-
-                        <div class="equipo">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/FC_Internazionale_Milano_2021.svg/2048px-FC_Internazionale_Milano_2021.svg.png"
-                                alt="Escudo Inter" class="escudo">
-                            <div class="nombre-equipo">Inter</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="encuentro">
-                <a href="capiStads.html" class="main__encounter">
-                    <div class="equipos">
-                        <div class="equipo">
-                            <img src="https://as01.epimg.net/img/comunes/fotos/fichas/equipos/large/49.png"
-                                alt="Escudo PSG" class="escudo">
-                            <div class="nombre-equipo">PSG</div>
-                        </div>
-
-                        <div class="marcador-container">
-                            <div class="goles-label">
-                                <i class="fas fa-futbol"></i>
-                                <span>Goles</span>
-                            </div>
-                            <div class="marcador">4 - 0</div>
-                        </div>
-
-
-                        <div class="equipo">
-                            <img src="https://as01.epimg.net/img/comunes/fotos/fichas/equipos/large/65.png"
-                                alt="Escudo Liverpool" class="escudo">
-                            <div class="nombre-equipo">Liverpool</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
+        <div class="versus" id="encuentrosContainer"></div>
     </div>
 
     <div class="anuncio-overlay" id="anuncioOverlay">
@@ -182,6 +103,126 @@
         <p>&copy; 2025 CapySoccer. Todos los derechos reservados.</p>
     </footer>
     <script src="js/menu-desplegable.js"></script>
+    <!--Selección de ligas-->
+    <script>
+        function getQueryParameter(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        function cargarContenido() {
+            const opcion = getQueryParameter('opcion');
+            const encuentrosContainer = document.getElementById('encuentrosContainer');
+
+            let contenidoHTML = '';
+
+            // Definir los contenidos según la opción seleccionada
+            if (opcion === 'champions') {
+                contenidoHTML = `
+                <div class="encuentro">
+                    <a href="capiStads.html" class="main__encounter">
+                        <div class="equipos">
+                            <div class="equipo">
+                                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png"
+                                    alt="Escudo Barcelona" class="escudo">
+                                <div class="nombre-equipo">Barcelona</div>
+                            </div>
+
+                            <div class="marcador-container">
+                                <div class="goles-label">
+                                    <i class="fas fa-futbol"></i>
+                                    <span>Goles</span>
+                                </div>
+                                <div class="marcador">3 - 1</div>
+                            </div>
+
+
+                            <div class="equipo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png"
+                                    alt="Escudo Dortmund" class="escudo">
+                                <div class="nombre-equipo">Dortmund</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="encuentro">
+                    <a href="capiStads.html" class="main__encounter">
+                        <div class="equipos">
+                            <div class="equipo">
+                                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png"
+                                    alt="Escudo Real Madrid" class="escudo">
+                                <div class="nombre-equipo">Real Madrid</div>
+                            </div>
+
+                            <div class="marcador-container">
+                                <div class="goles-label">
+                                    <i class="fas fa-futbol"></i>
+                                    <span>Goles</span>
+                                </div>
+                                <div class="marcador">2 - 2</div>
+                            </div>
+
+
+                            <div class="equipo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/FC_Internazionale_Milano_2021.svg/2048px-FC_Internazionale_Milano_2021.svg.png"
+                                    alt="Escudo Inter" class="escudo">
+                                <div class="nombre-equipo">Inter</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="encuentro">
+                    <a href="capiStads.html" class="main__encounter">
+                        <div class="equipos">
+                            <div class="equipo">
+                                <img src="https://as01.epimg.net/img/comunes/fotos/fichas/equipos/large/49.png"
+                                    alt="Escudo PSG" class="escudo">
+                                <div class="nombre-equipo">PSG</div>
+                            </div>
+
+                            <div class="marcador-container">
+                                <div class="goles-label">
+                                    <i class="fas fa-futbol"></i>
+                                    <span>Goles</span>
+                                </div>
+                                <div class="marcador">4 - 0</div>
+                            </div>
+
+
+                            <div class="equipo">
+                                <img src="https://as01.epimg.net/img/comunes/fotos/fichas/equipos/large/65.png"
+                                    alt="Escudo Liverpool" class="escudo">
+                                <div class="nombre-equipo">Liverpool</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                `;
+            } else if (opcion === 'europa') {
+                contenidoHTML = `
+                `;
+            } else if (opcion === 'libertadores') {
+                contenidoHTML = `
+                `;
+            } else if (opcion === 'laliga') {
+                contenidoHTML = `
+                `;
+            } else if (opcion === 'liga1') {
+                contenidoHTML = `
+                `;
+            } else if (opcion === 'premier') {
+                contenidoHTML = `
+                `;
+            } else {
+                contenidoHTML = '<p>No se encontró contenido para la opción seleccionada.</p>';
+            }
+
+            encuentrosContainer.innerHTML = contenidoHTML;
+        }
+
+        // Cargar el contenido al cargar la página
+        document.addEventListener('DOMContentLoaded', cargarContenido);
+    </script>
     <!--Modal(Anuncio)-->
     <script>
         document.addEventListener('DOMContentLoaded', function () {

@@ -14,22 +14,14 @@
 <body style="background: url('img/canchaFutbol.jpg') no-repeat center center; background-size: cover;">
     <nav class="menu">
         <section class="menu__container">
-            <h1 class="menu__logo"><a href="user-config.html" class="menu__link_logo"><img src="img/logoCapySoccer.jfif"
+            <h1 class="menu__logo"><a href="capiIndex.html" class="menu__link_logo"><img src="img/logoCapySoccer.jfif"
                         style="width: 62.5px; height: 62.5px; border-radius: 100%;">CapiSoccer</a></h1>
-
-            <div class="back__arrow">
-                <a href="capiSubs2.html" class="back_arrow__link"><img src="img/svgs/back_arrow.svg"
-                        class="back_arrow__img"></a>
-            </div>
 
             <div class="page__name">
                 <div class="page__capt">Pago</div>
             </div>
 
             <ul class="menu__links">
-                <li class="menu__item">
-                    <a href="capiIndex.html" class="menu__link">Inicio</a>
-                </li>
 
                 <li class="menu__item  menu__item--show">
                     <a href="capiSubs.html" class="menu__link">Suscrpciones <img src="img/svgs/arrow.svg"
@@ -56,8 +48,8 @@
                 </li>
 
                 <li class="menu__item_user">
-                    <a href="capiLogin.html" id="user-view2" class="menu__link"><img src="img/user_icon_def.png"
-                            style="width: 30px; height: 30px; border-radius: 100%;"></a>
+                    <a href="capiLogin.html" class="menu__link"><img src="/img/user_icon_def.png"
+                            style="width: 30px; height: 30px; border-radius: 100%;"><div id="user-view"></div></a>
                 </li>
 
             </ul>
@@ -178,31 +170,23 @@
                 console.error('Error al cargar los costos:', error);
             });
 
-        function seleccionarPlan(plan) {
-            sessionStorage.setItem('planSeleccionado', plan);
-            mostrarSeleccion();
+        function seleccionarOpcion(rango) {
+            sessionStorage.setItem('opcionSeleccionada', rango);
+            mostrarSeleccion(rango);
             abrirModal();
         }
 
-        function mostrarSeleccion() {
-            const opcion = sessionStorage.getItem('opcionSeleccionada');
+        function mostrarSeleccion(rango) {
             const contenedor = document.getElementById('opcionSeleccionada');
-            contenedor.textContent = opcion ? `Rango: ${opcion}` : 'Sin rango.';
+            contenedor.textContent = `Rango: ${rango}`;
 
-            const plan = sessionStorage.getItem('planSeleccionado');
-            const contenedor2 = document.getElementById('opcionSeleccionada2');
-            contenedor2.textContent = plan ? `Plan: ${plan}` : 'Sin plan.';
-
-            const costo = calcularCosto(opcion, plan);
+            const costo = calcularCosto(rango);
             const contenedorCosto = document.querySelector('.costo-plan');
             contenedorCosto.textContent = `Total: $${costo}`;
         }
 
-        function calcularCosto(rango, plan) {
-            if (costos[rango] && costos[rango][plan]) {
-                return costos[rango][plan];
-            }
-            return 0;
+        function calcularCosto(rango) {
+            return costos[rango] || 0;
         }
     </script>
     <!--Cargar usuario/ Validar modal-->
@@ -241,7 +225,9 @@
                     return;
                 }
 
-                mostrarModal("La compra se ha concretado exitosamente, se ha enviado una boleta a su correo electrónico.");
+                mostrarModal(
+                    "La compra se ha concretado exitosamente, se ha enviado una boleta a su correo electrónico."
+                    );
                 setTimeout(() => {
                     window.location.href =
                         'capiIndex.html';

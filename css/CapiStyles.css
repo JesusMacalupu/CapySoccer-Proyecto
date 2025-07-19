@@ -44,7 +44,7 @@ body {
 .menu__item_user {
     list-style: none;
     position: relative;
-    margin-left: 400px;
+    margin-left: auto;
     height: 100%;
     --clip: polygon(0 0, 100% 0, 100% 0, 0 0);
     --transform: rotate(-90deg);

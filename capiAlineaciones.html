@@ -510,7 +510,7 @@
                         <div class="circulo"
                             onclick="seleccionarJugador('João Cancelo', 'Lateral Derecho', 2, 'Portugal', '31 años', 'https://media.futbolfantasy.com/thumb/400x400/v202407022317/uploads/images/jugadores/ficha/1882.png', 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png')">
                             2</div>
-                        <div class="circulo"
+                        <div class="circulo" 
                             onclick="seleccionarJugador('Ronald Araújo', 'Defensa Central', 4, 'Uruguay', '26 años', 'https://www.directvsports.com/_export/1694124711541/sites/dsports/img/2023/09/07/20230907_071151059_vkmx2wpedzab18lno0lxrmoiw.jpg_1301049368.jpg', 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png')">
                             4</div>
                         <div class="circulo"
@@ -633,35 +633,33 @@
     <script>
         // Variable para almacenar el círculo seleccionado actualmente
         let circuloSeleccionado = null;
-
+        
         function seleccionarJugador(nombre, posicion, dorsal, nacionalidad, edad, foto, escudo) {
             // Si hay un círculo seleccionado previamente, lo deseleccionamos
             if (circuloSeleccionado) {
                 circuloSeleccionado.classList.remove('seleccionado');
             }
-
+            
             // Seleccionamos el nuevo círculo
             const circulo = event.target;
             circulo.classList.add('seleccionado');
             circuloSeleccionado = circulo;
-
+            
             // Actualizamos el escudo del equipo
             document.getElementById('escudo-equipo').src = escudo;
-
+            
             // Actualizamos la información del jugador
             const jugadorInfo = document.getElementById('jugador-info');
-
+            
             // Crear contenido HTML para la foto (manejar errores de imagen)
-            let fotoHTML = < div class = "jugador-foto" > ;
+            let fotoHTML = <div class="jugador-foto">;
             if (foto) {
-                fotoHTML += < img src = "${foto}"
-                alt = "${nombre}"
-                onerror = "this.parentElement.innerHTML='<span>Foto no disponible</span>'" > ;
+                fotoHTML += <img src="${foto}" alt="${nombre}" onerror="this.parentElement.innerHTML='<span>Foto no disponible</span>'">;
             } else {
-                fotoHTML += < span > Foto no disponible < /span>;
+                fotoHTML += <span>Foto no disponible</span>;
             }
-            fotoHTML += < /div>;
-
+            fotoHTML += </div>;
+            
             jugadorInfo.innerHTML = `
                 ${fotoHTML}
                 <div class="jugador-nombre">${nombre}</div>
@@ -676,6 +674,7 @@
             `;
         }
     </script>
+
 </body>
 
 </html>

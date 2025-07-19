@@ -5,20 +5,283 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CapySoccer</title>
+    <style>
+        .chatbot-button {
+            width: 67px;
+            height: 67px;
+            background-color: #FFB000;
+            color: white;
+            border: 4px solid #6e6e6e;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            font-size: 24px;
+            cursor: pointer;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .chatbot-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive: en pantallas pequeñas reducir tamaño */
+        @media (max-width: 768px) {
+            .chatbot-button {
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chatbot-button {
+                width: 45px;
+                height: 45px;
+                font-size: 16px;
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+
+        /************** MODAL DEL CHAT BOT DE LA PAGINA ****************/
+
+        .modal-bot {
+            display: none;
+            position: fixed;
+            bottom: calc(20px + 67px);
+            right: calc(20px + 67px);
+            width: 400px;
+            max-width: 90%;
+            background-color: #fff;
+            border: 2px solid #6e6e6e;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            z-index: 9998;
+            overflow: hidden;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .modal-bot::after {
+            content: "";
+            position: absolute;
+            bottom: -30px;
+            right: 20px;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 30px solid #fff;
+            filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-bot-header {
+            background-color: #1f3d7a;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 16px;
+            position: relative;
+        }
+
+        .modal-bot-header .close-btn {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 28px;
+            color: #ffb000;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-bot-header .close-btn:hover {
+            color: #e09c00;
+        }
+
+        .modal-bot-body {
+            background: #f9f9f9;
+            padding: 12px;
+            max-height: 280px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 15px;
+            scroll-behavior: smooth;
+        }
+
+        .bot-bubble,
+        .user-bubble {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 18px;
+            word-wrap: break-word;
+            line-height: 1.4;
+            font-size: 15px;
+            display: inline-block;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeSlideIn 0.3s forwards;
+        }
+
+        .bot-bubble {
+            background: #ececec;
+            color: #333;
+            align-self: flex-start;
+            border-top-left-radius: 4px;
+        }
+
+        .user-bubble {
+            background: #ffb000;
+            color: #fff;
+            align-self: flex-end;
+            border-top-right-radius: 4px;
+        }
+
+        @keyframes fadeSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-bot-footer {
+            padding: 8px;
+            background-color: #f4f4f4;
+            display: flex;
+            gap: 6px;
+        }
+
+        .modal-bot-footer input {
+            flex: 1;
+            padding: 8px 12px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+
+        .modal-bot-footer input:focus {
+            border: 3px solid #ffb000;
+        }
+
+        .modal-bot-footer button {
+            width: 40px;
+            height: 40px;
+            background-color: #ffb000;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-bot-footer button:hover {
+            background-color: #e09c00;
+        }
+
+        .modal-bot-footer button i {
+            color: #fff;
+            font-size: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .modal-bot {
+                width: 90%;
+                right: 20px;
+                bottom: 80px;
+                font-size: 14px;
+            }
+
+            .modal-bot-header {
+                font-size: 16px;
+                padding: 10px 14px;
+            }
+
+            .modal-bot-footer input {
+                font-size: 13px;
+            }
+
+            .bot-bubble,
+            .user-bubble {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-bot {
+                width: 95%;
+                right: 10px;
+                bottom: 70px;
+                font-size: 13px;
+            }
+
+            .modal-bot-header {
+                font-size: 15px;
+                padding: 8px 12px;
+            }
+
+            .modal-bot-header .close-btn {
+                font-size: 24px;
+            }
+
+            .modal-bot-body {
+                max-height: 220px;
+            }
+
+            .modal-bot-footer input {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+
+            .modal-bot-footer button {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+
+            .bot-bubble,
+            .user-bubble {
+                font-size: 13px;
+                max-width: 90%;
+            }
+        }
+    </style>
     <link rel="stylesheet" href="css/CapiStyles.css">
 </head>
 
 <body>
     <nav class="menu">
         <section class="menu__container">
-            <h1 class="menu__logo"><a href="user-config.html" class="menu__link_logo"><img src="img/logoCapySoccer.jfif"
+            <h1 class="menu__logo"><a href="capiIndex.html" class="menu__link_logo"><img src="img/logoCapySoccer.jfif"
                         style="width: 62.5px; height: 62.5px; border-radius: 100%;">CapiSoccer</a></h1>
 
             <ul class="menu__links">
-                <li class="menu__item">
-                    <a href="capiIndex.html" class="menu__link">Inicio</a>
-                </li>
-
                 <li class="menu__item  menu__item--show">
                     <a href="capiSubs.html" class="menu__link">Suscrpciones <img src="img/svgs/arrow.svg"
                             class="menu__arrow"></a>
@@ -26,15 +289,15 @@
                     <ul class="menu__nesting">
                         <li class="menu__inside">
                             <a href="javascript:void(0);" class="menu__link menu__link--inside"
-                                onclick="seleccionarOpcion('Cobre', 'capiSubs2.html')">Cobre</a>
+                                onclick="seleccionarOpcion('Cobre', 'capiPago.html')">Cobre</a>
                         </li>
                         <li class="menu__inside">
                             <a href="javascript:void(0);" class="menu__link menu__link--inside"
-                                onclick="seleccionarOpcion('Plata', 'capiSubs2.html')">Plata</a>
+                                onclick="seleccionarOpcion('Plata', 'capiPago.html')">Plata</a>
                         </li>
                         <li class="menu__inside">
                             <a href="javascript:void(0);" class="menu__link menu__link--inside"
-                                onclick="seleccionarOpcion('Oro', 'capiSubs2.html')">Oro</a>
+                                onclick="seleccionarOpcion('Oro', 'capiPago.html')">Oro</a>
                         </li>
                     </ul>
                 </li>
@@ -43,9 +306,15 @@
                     <a href="capiStads.html" class="menu__link">Estadísticas</a>
                 </li>
 
+                <li class="menu__item">
+                    <a href="capiComunidad.html" class="menu__link">Comunidad</a>
+                </li>
+
                 <li class="menu__item_user">
-                    <a href="capiLogin.html" id="user-view" class="menu__link"><img src="img/user_icon_def.png"
-                            style="width: 30px; height: 30px; border-radius: 100%;"></a>
+                    <a href="capiLogin.html" class="menu__link"><img src="/img/user_icon_def.png"
+                            style="width: 30px; height: 30px; border-radius: 100%;">
+                        <div id="user-view"></div>
+                    </a>
                 </li>
 
             </ul>
@@ -55,21 +324,66 @@
             </div>
         </section>
     </nav>
+
+    <button class="chatbot-button" aria-label="ChatBot de CapySoccer">💬</button>
+    <div id="modalBot" class="modal-bot">
+        <div class="modal-bot-content">
+            <div class="modal-bot-header">
+                CAPYSOCCER | CHATBOT
+                <span id="modalBotClose" class="close-btn">&times;</span>
+            </div>
+
+            <div class="modal-bot-body" id="chatBody">
+                <div class="bot-bubble">
+                    👋 Bienvenido a nuestro servicio de ChatBot.
+                    Estoy aquí para ayudarte con cualquier consulta que tengas sobre nuestros productos o servicios.
+                </div>
+                <div class="bot-bubble">
+                    Por favor, escribe tu pregunta y te responderé a la brevedad.
+                </div>
+            </div>
+
+            <div class="modal-bot-footer">
+                <input type="text" id="userInput" placeholder="Escribe tu mensaje..." />
+                <button id="sendBtn" title="Enviar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-send" viewBox="0 0 16 16">
+                        <path
+                            d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <main class="main-content">
         <div id="bienvenido"></div>
         <br>
         <h2>Ligas Internacionales</h2>
         <br>
         <section class="league-grid">
-            <div class="league-item"><a href="capiPartidos.html"><img src="img/champions.png"
-                        alt="Champions League"></a></div>
-            <div class="league-item"><a href="capiPartidos.html"><img src="img/europa.png" alt="Europa League"></a>
+            <div class="league-item" onclick="redirect('capiPartidos.html?opcion=champions')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/%DA%86%D8%A7%D9%85%D9%BE%DB%8C%DB%86%D9%86%D8%B2%D9%84%DB%8C%DA%AF.png/640px-%DA%86%D8%A7%D9%85%D9%BE%DB%8C%DB%86%D9%86%D8%B2%D9%84%DB%8C%DA%AF.png"
+                    alt="Champions League">
             </div>
-            <div class="league-item"><a href="capiPartidos.html"><img src="img/libertadores.png" alt="Libertadores"></a>
+            <div class="league-item" onclick="redirect('capiPartidos.html?opcion=europa')">
+                <img src="https://images.seeklogo.com/logo-png/28/2/uefa-europa-league-2016-logo-png_seeklogo-285940.png"
+                    alt="Europa League">
             </div>
-            <div class="league-item"><a href="capiPartidos.html"><img src="img/laliga.jpg" alt="La Liga"></a></div>
-            <div class="league-item"><a href="capiPartidos.html"><img src="img/serie-a.jpg" alt="Serie A"></a></div>
-            <div class="league-item"><a href="capiPartidos.html"><img src="img/premier.png" alt="Premier League"></a>
+            <div class="league-item" onclick="redirect('capiPartidos.html?opcion=libertadores')">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Copa_Libertadores_logo.svg/1200px-Copa_Libertadores_logo.svg.png"
+                    alt="Libertadores">
+            </div>
+            <div class="league-item" onclick="redirect('capiPartidos.html?opcion=laliga')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/LaLiga_logo_2023.svg/2048px-LaLiga_logo_2023.svg.png"
+                    alt="La Liga">
+            </div>
+            <div class="league-item" onclick="redirect('capiPartidos.html?opcion=liga1')">
+                <img src="https://a.espncdn.com/combiner/i?img=/i/leaguelogos/soccer/500/1813.png" alt="Liga 1">
+            </div>
+            <div class="league-item" onclick="redirect('capiPartidos.html?opcion=premier')">
+                <img src="https://images.seeklogo.com/logo-png/28/2/premier-league-new-logo-png_seeklogo-286461.png"
+                    alt="Premier League">
             </div>
         </section>
     </main>
@@ -100,6 +414,65 @@
     <footer class="footer">
         <p>&copy; 2025 CapySoccer. Todos los derechos reservados.</p>
     </footer>
+    <!--Chatbot-->
+        <script>
+        const button = document.querySelector('.chatbot-button');
+        const modal = document.getElementById('modalBot');
+        const chatBody = document.getElementById('chatBody');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const closeBtn = document.getElementById('modalBotClose');
+
+        // Mostrar modal
+        button?.addEventListener('click', () => {
+            modal.style.display = 'block';
+        });
+
+        // Cerrar modal
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Cerrar al hacer click fuera
+        window.addEventListener('click', (e) => {
+            if (!modal.contains(e.target) && e.target !== button) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Enviar mensaje
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        function sendMessage() {
+            const msg = userInput.value.trim();
+            if (!msg) return;
+
+            const userBubble = document.createElement('div');
+            userBubble.className = 'user-bubble';
+            userBubble.textContent = msg;
+            chatBody.appendChild(userBubble);
+
+            chatBody.scrollTop = chatBody.scrollHeight;
+            userInput.value = '';
+
+            setTimeout(() => {
+                const botBubble = document.createElement('div');
+                botBubble.className = 'bot-bubble';
+                botBubble.textContent = 'Gracias por tu mensaje. En breve te responderé.';
+                chatBody.appendChild(botBubble);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 1000);
+        }
+    </script>
+    <!--Selección de ligas-->
+    <script>
+        function redirect(url) {
+            window.location.href = url;
+        }
+    </script>
     <!--Modal(Anuncio)-->
     <script>
         document.addEventListener('DOMContentLoaded', function () {

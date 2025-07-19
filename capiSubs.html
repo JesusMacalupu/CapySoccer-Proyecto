@@ -12,50 +12,24 @@
 <body style="background: url('img/canchaFutbol.jpg') no-repeat center center; background-size: cover;">
     <nav class="menu">
         <section class="menu__container">
-            <h1 class="menu__logo"><a href="user-config.html" class="menu__link_logo"><img src="img/logoCapySoccer.jfif"
+            <h1 class="menu__logo"><a href="capiIndex.html" class="menu__link_logo"><img src="img/logoCapySoccer.jfif"
                         style="width: 62.5px; height: 62.5px; border-radius: 100%;">CapiSoccer</a></h1>
 
-            <div class="back__arrow">
-                <a href="capiIndex.html" class="back_arrow__link"><img src="img/svgs/back_arrow.svg"
-                        class="back_arrow__img"></a>
-            </div>
-
-            <div class="page__name">
-                <div class="page__capt">Subscripciones</div>
-            </div>
-
             <ul class="menu__links">
-                <li class="menu__item">
-                    <a href="capiIndex.html" class="menu__link">Inicio</a>
-                </li>
-
-                <li class="menu__item  menu__item--show">
-                    <a href="capiSubs.html" class="menu__link">Suscrpciones <img src="img/svgs/arrow.svg"
-                            class="menu__arrow"></a>
-
-                    <ul class="menu__nesting">
-                        <li class="menu__inside">
-                            <a href="javascript:void(0);" class="menu__link menu__link--inside"
-                                onclick="seleccionarOpcion('Cobre', 'capiSubs2.html')">Cobre</a>
-                        </li>
-                        <li class="menu__inside">
-                            <a href="javascript:void(0);" class="menu__link menu__link--inside"
-                                onclick="seleccionarOpcion('Plata', 'capiSubs2.html')">Plata</a>
-                        </li>
-                        <li class="menu__inside">
-                            <a href="javascript:void(0);" class="menu__link menu__link--inside"
-                                onclick="seleccionarOpcion('Oro', 'capiSubs2.html')">Oro</a>
-                        </li>
-                    </ul>
-                </li>
 
                 <li class="menu__item">
                     <a href="capiStads.html" class="menu__link">Estadísticas</a>
                 </li>
 
+                <li class="menu__item">
+                    <a href="capiComunidad.html" class="menu__link">Comunidad</a>
+                </li>
+
                 <li class="menu__item_user">
-                    <a href="capiLogin.html" id="user-view" class="menu__link"><img src="img/user_icon_def.png"
-                            style="width: 30px; height: 30px; border-radius: 100%;"></a>
+                    <a href="capiLogin.html" class="menu__link"><img src="/img/user_icon_def.png"
+                            style="width: 30px; height: 30px; border-radius: 100%;">
+                        <div id="user-view"></div>
+                    </a>
                 </li>
 
             </ul>
@@ -65,47 +39,55 @@
             </div>
         </section>
     </nav>
+
     <main class="main-content">
         <div id="bienvenido"></div>
         <br>
-        <h2 style="font-size: 75px;">Planes</h2>
+        <h2 style="font-size: 75px;">Rangos</h2>
         <br>
         <section class="league-grid">
             <div class="league-item">
                 <a class="light" style="background-color: #B87333" href="javascript:void(0);"
-                    onclick="seleccionarOpcion('Cobre', 'capiSubs2.html')"><span>Cobre</span></a>
+                    onclick="seleccionarOpcion('Cobre')"><span>Cobre</span></a>
             </div>
             <div class="league-item">
                 <a class="light" style="background-color: #C0C0C0" href="javascript:void(0);"
-                    onclick="seleccionarOpcion('Plata', 'capiSubs2.html')"><span>Plata</span></a>
+                    onclick="seleccionarOpcion('Plata')"><span>Plata</span></a>
             </div>
             <div class="league-item">
                 <a class="light" style="background-color: #FFD700" href="javascript:void(0);"
-                    onclick="seleccionarOpcion('Oro', 'capiSubs2.html')"><span>Oro</span></a>
+                    onclick="seleccionarOpcion('Oro')"><span>Oro</span></a>
             </div>
         </section>
     </main>
-    <div class="anuncio-overlay" id="anuncioOverlay">
-        <div class="anuncio-container">
-            <div class="anuncio" id="anuncio">
-                <button class="cerrar-anuncio" id="cerrarAnuncio">×</button>
-                <div class="anuncio-imagenes">
-                    <div class="anuncio-imagen"
-                        style="background-image: url('https://home.ripley.com.pe/Attachment/WOP_5/2084276561371/2084276561371_2.jpg');">
-                    </div>
-                    <div class="anuncio-imagen"
-                        style="background-image: url('https://static.vecteezy.com/system/resources/thumbnails/010/994/239/small_2x/adidas-logo-black-symbol-clothes-design-icon-abstract-football-illustration-with-white-background-free-vector.jpg');">
-                    </div>
-                    <div class="anuncio-imagen"
-                        style="background-image: url('https://rimage.ripley.com.pe/home.ripley/Attachment/WOP/1/2020319684119/full_image-2020319684119.jpg');">
-                    </div>
-                    <div class="anuncio-imagen"
-                        style="background-image: url('https://mercury.vtexassets.com/arquivos/ids/19578918-800-800?v=638697318513000000&width=800&height=800&aspect=true');">
-                    </div>
+    <div class="modal-overlay" id="modalOverlay" onclick="cerrarModal(event)">
+        <div class="modal-container">
+            <span class="close-modal" id="closemodal" onclick="cerrarModal()">×</span>
+            <div class="modal-left">
+                <button class="modal-button-yape"><img
+                        src="https://ingenieriacivilyconstruccion.com/wp-content/uploads/2024/12/Yape-v2.png"
+                        class="yape-img"
+                        style="width: 132.5px; height: 125px; transition: transform 0.3s ease;"></button>
+                <button class="modal-button-plin"><img src="https://logosenvector.com/logo/img/plin-interbank-4391.png"
+                        class="plin-img" style="width: 90px; height: 90px; transition: transform 0.3s ease;"></button>
+                <button class="modal-button-visa"><img
+                        src="https://1000marcas.net/wp-content/uploads/2019/12/VISA-Logo-2014.png" class="visa-img"
+                        style="width: 125px; height: 75px; transition: transform 0.3s ease;"></button>
+                <button class="modal-button-mastercard"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/2560px-MasterCard_Logo.svg.png"
+                        class="mcard-img"
+                        style="width: 112.5px; height: 65px; transition: transform 0.3s ease;"></button>
+            </div>
+            <div class="modal-right">
+                <div class="qr-code">
+                    <img id="qrCode" src="https://api.qrserver.com/v1/create-qr-code/?data=randomText&size=200x200" class="qr-img" alt="Código QR" style="width: 200px; height: 200px;">
                 </div>
-                <div class="anuncio-texto">
-                    ¡Ofertas exclusivas en artículos de fútbol! Hasta 40% de descuento
+                <div class="planes-seleccionados">
+                    <div class="stats-rank" id="opcionSeleccionada"></div>
+                    <div class="costo-plan"></div>
                 </div>
+                <button class="modal-button-right"><a href="capiPago.html" class="btn-tarjeta">Pagar con
+                        tarjeta</a></button>
             </div>
         </div>
     </div>
@@ -116,24 +98,58 @@
             window.location.href = url;
         }
     </script>
-    <!--Modal(Anuncio)-->
+    <!--Cargar datos / modal-->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const anuncioOverlay = document.getElementById('anuncioOverlay');
-            const cerrarAnuncio = document.getElementById('cerrarAnuncio');
+        const marcoOverlay = document.getElementById('modalOverlay');
+        const cerrarModal = document.getElementById('closemodal');
 
-            function ocultarAnuncio() {
-                anuncioOverlay.style.display = 'none';
+        function abrirModal() {
+            marcoOverlay.style.display = 'flex';
+        }
+
+        function ocultarModal() {
+            marcoOverlay.style.display = 'none';
+        }
+
+        cerrarModal.addEventListener('click', ocultarModal);
+
+        marcoOverlay.addEventListener('click', function (e) {
+            if (e.target === marcoOverlay) {
+                ocultarModal();
             }
-
-            cerrarAnuncio.addEventListener('click', ocultarAnuncio);
-
-            anuncioOverlay.addEventListener('click', function (e) {
-                if (e.target === anuncioOverlay) {
-                    ocultarAnuncio();
-                }
-            });
         });
+
+        // Carga de datos (Rangos, costos)
+        let costos = {};
+
+        fetch('costo-planes.json')
+            .then(response => response.json())
+            .then(data => {
+                costos = data;
+            })
+            .catch(error => {
+                console.error('Error al cargar los costos:', error);
+            });
+
+        function seleccionarOpcion(rango) {
+            sessionStorage.setItem('opcionSeleccionada', rango);
+            mostrarSeleccion(rango);
+            abrirModal();
+        }
+
+        function mostrarSeleccion(rango) {
+            const contenedor = document.getElementById('opcionSeleccionada');
+            contenedor.textContent = `Rango: ${rango}`;
+
+            const costo = calcularCosto(rango);
+            const contenedorCosto = document.querySelector('.costo-plan');
+            contenedorCosto.textContent = `Total: $${costo}`;
+        }
+
+        function calcularCosto(rango) {
+            // Accede directamente al costo desde el JSON
+            return costos[rango] || 0; // Devuelve 0 si no existe
+        }
     </script>
     <!--Cargar usuario-->
     <script>
