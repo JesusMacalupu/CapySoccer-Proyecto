@@ -511,7 +511,11 @@
                             onclick="seleccionarJugador('João Cancelo', 'Lateral Derecho', 2, 'Portugal', '31 años', 'https://media.futbolfantasy.com/thumb/400x400/v202407022317/uploads/images/jugadores/ficha/1882.png', 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png')">
                             2</div>
                         <div class="circulo" 
+<<<<<<< HEAD
                             onclick="seleccionarJugador('Ronald Araújo', 'Defensa Central', 4, 'Uruguay', '26 años', 'https://www.directvsports.com/_export/1694124711541/sites/dsports/img/2023/09/07/20230907_071151059_vkmx2wpedzab18lno0lxrmoiw.jpg_1301049368.jpg', 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png')">
+=======
+                            onclick="seleccionarJugador('Ronald Araújo', 'Defensa Central', 4, 'Uruguay', '26 años', 'https://www.directvsports.com/__export/1694124711541/sites/dsports/img/2023/09/07/20230907_071151059_vkmx2wpedzab18lno0lxrmoiw.jpg_1301049368.jpg', 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png')">
+>>>>>>> c0cac350fabc98658a9e3c28a1bd86bb98199ea5
                             4</div>
                         <div class="circulo"
                             onclick="seleccionarJugador('Pau Cubarsí', 'Defensa Central', 33, 'España', '18 años', 'https://assets.laliga.com/squad/2024/t178/p593110/1024x1024/p593110_t178_2024_1_003_000.png', 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png')">
@@ -652,6 +656,7 @@
             const jugadorInfo = document.getElementById('jugador-info');
             
             // Crear contenido HTML para la foto (manejar errores de imagen)
+<<<<<<< HEAD
             let fotoHTML = <div class="jugador-foto">;
             if (foto) {
                 fotoHTML += <img src="${foto}" alt="${nombre}" onerror="this.parentElement.innerHTML='<span>Foto no disponible</span>'">;
@@ -659,6 +664,15 @@
                 fotoHTML += <span>Foto no disponible</span>;
             }
             fotoHTML += </div>;
+=======
+            let fotoHTML = `<div class="jugador-foto">`;
+            if (foto) {
+                fotoHTML += `<img src="${foto}" alt="${nombre}" onerror="this.parentElement.innerHTML='<span>Foto no disponible</span>'">`;
+            } else {
+                fotoHTML += `<span>Foto no disponible</span>`;
+            }
+            fotoHTML += `</div>`;
+>>>>>>> c0cac350fabc98658a9e3c28a1bd86bb98199ea5
             
             jugadorInfo.innerHTML = `
                 ${fotoHTML}
